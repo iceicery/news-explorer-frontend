@@ -1,0 +1,24 @@
+.search {
+  margin-top: 88px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 608px;
+  height: 64px;
+  background-color: #fff;
+  border: 1px solid #d1d2d6;
+  box-sizing: border-box;
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  position: relative;
+}
+
+.search__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.search__button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

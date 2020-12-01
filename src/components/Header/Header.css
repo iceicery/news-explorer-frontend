@@ -1,0 +1,35 @@
+.header {
+  width: 100%;
+  height: 576px;
+  background-image: url("../../images/header-bg.svg");
+}
+
+.header__title-box {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 80px;
+  width: 608px;
+}
+
+.header__title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 64px;
+  color: #fff;
+}
+
+.header__subtitle-box {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 32px;
+  width: 608px;
+}
+
+.header__subtitle {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
+}
