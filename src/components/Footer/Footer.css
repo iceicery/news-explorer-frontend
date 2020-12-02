@@ -1,0 +1,40 @@
+.footer {
+  display: flex;
+}
+
+.footer__text {
+  margin-left: 104px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #b6bcbf;
+}
+
+.footer__link-box {
+  display: flex;
+  margin-right: 42px;
+  margin-left: auto;
+}
+.footer__link {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  margin-left: 24px;
+  color: #1a1b22;
+}
+
+.footer__icon-box {
+  display: flex;
+  align-items: center;
+  margin-right: 78px;
+}
+
+.footer__icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 28px;
+}
