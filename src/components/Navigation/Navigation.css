@@ -3,6 +3,10 @@
   height: 80px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.nav-signin {
+  box-shadow: inset 0px -1px 0px #d1d2d6;
+}
 .nav__container {
   width: 95%;
   display: flex;
@@ -27,6 +31,10 @@
   justify-content: space-between;
 }
 
+.nav__place-box {
+  display: flex;
+}
+
 .nav__place {
   margin-top: 30px;
   font-style: normal;
@@ -38,6 +46,10 @@
   border-bottom: 3px solid #ffffff;
 
   color: #fff;
+}
+
+.nav__place:hover {
+  cursor: pointer;
 }
 
 .nav__signin {
@@ -55,4 +67,46 @@
   border: 1px solid #fff;
   box-sizing: border-box;
   border-radius: 100px;
+}
+
+.nav__signin:hover {
+  cursor: pointer;
+}
+
+.nav__login {
+  color: #1a1b22;
+}
+
+.nav__signined {
+  color: #1a1b22;
+  border: 1px solid #1a1b22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__login-text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  margin-right: 15px;
+}
+
+.nav__icon {
+  background-color: #fff;
+  width: 24px;
+  height: 24px;
+}
+
+.nav__place-select {
+  margin-top: 30px;
+  margin-left: 76px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  padding-bottom: 23px;
+  border-bottom: 3px solid #1a1b22;
+  color: #1a1b22;
 }
