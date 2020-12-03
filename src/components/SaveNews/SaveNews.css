@@ -1,0 +1,34 @@
+.savenews {
+  background-color: #f5f6f7;
+  border: solid #f5f6f7;
+}
+.savenews__title {
+  margin-top: 80px;
+  margin-left: 7%;
+  margin-bottom: 64px;
+  font-family: "RobotoSlab";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+
+  color: #1a1b22;
+}
+
+.savenews__button {
+  margin-left: calc(50% - 144px);
+  margin-top: 64px;
+  margin-bottom: 80px;
+  width: 288px;
+  height: 64px;
+  background-color: #fff;
+  border-radius: 80px;
+  border: #fff;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #1a1b22;
+}
