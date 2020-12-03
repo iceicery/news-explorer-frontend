@@ -1,0 +1,116 @@
+.newscard {
+  height: 576px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.newscard__icon {
+  width: 40px;
+  height: 40px;
+  background-image: url("../../images/bookmark-white.png");
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.newscard__icon:hover {
+  cursor: pointer;
+  background-image: url("../../images/bookmark1.png");
+}
+
+.newscard__popup {
+  display: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  background-color: #fff;
+  padding: 11px 20px;
+  color: #000;
+  position: absolute;
+  top: 13px;
+  right: 69px;
+  border-radius: 10px;
+}
+.newscard__icon:hover + .newscard__popup {
+  display: block;
+}
+
+.newscard__img {
+  width: 100%;
+  height: 272px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  padding: 0;
+  margin: 0;
+}
+
+.newscard__text-box {
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+
+.newscard__date {
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+  margin-left: 24px;
+  font-family: "Sourcesanspro";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+}
+.newscard__title {
+  padding: 0;
+  margin: 0;
+  margin-top: 12px;
+  margin-left: 6%;
+  margin-right: 6%;
+  font-family: "RobotoSlab";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+}
+
+.newscard__text {
+  padding: 0;
+  margin: 0;
+  margin-top: 16px;
+  margin-left: 6%;
+  margin-right: 6%;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+}
+
+.newscard__sourse {
+  padding: 0;
+  margin: 0;
+  margin-top: 18px;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-bottom: 24px;
+  font-family: "RobotoSlab";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #b6bcbf;
+}
