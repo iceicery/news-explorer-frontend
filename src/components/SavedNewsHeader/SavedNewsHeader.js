@@ -7,7 +7,7 @@ export default function SaveNewsHeader() {
             <Navigation isLogin={true} />
             <p className="savedHeader__subtitle">Saved articles</p>
             <h3 className="savedHeader__title">Elise, you have 5 saved articles</h3>
-            <p className="savedHeader__text">By keywords:</p><p className="savedHeader__text-bold"> Nature, Yellowstone, and 2 other</p>
+            <div className="savedHeader__text-box"><p className="savedHeader__text">By keywords:</p><p className="savedHeader__text-bold"> Nature, Yellowstone, and 2 other</p></div>
         </section>
     )
 }

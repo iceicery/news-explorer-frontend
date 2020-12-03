@@ -17,7 +17,7 @@ export default function Navigation({ isLogin }) {
                 <p className={titleClass}>NewsExplorer</p>
                 <div className="nav__box">
                     <div>{placeElt}</div>
-                    <botton className={signClass}>{signElt}</botton>
+                    <button className={signClass}>{signElt}</button>
                 </div>
             </div>
         </nav>

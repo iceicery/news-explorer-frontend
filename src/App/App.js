@@ -11,6 +11,7 @@ import SaveNewsHeader from '../components/SavedNewsHeader/SavedNewsHeader';
 function App() {
   return (
     <div className="App">
+      <Header />
       <SaveNewsHeader />
       <NotFound />
       <About />

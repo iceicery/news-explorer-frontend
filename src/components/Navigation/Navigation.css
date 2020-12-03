@@ -5,10 +5,11 @@
 }
 
 .nav-signin {
+  width: 100%;
   box-shadow: inset 0px -1px 0px #d1d2d6;
 }
 .nav__container {
-  width: 95%;
+  width: 85%;
   display: flex;
   justify-content: space-between;
   margin-left: auto;
@@ -53,6 +54,7 @@
 }
 
 .nav__signin {
+  background-color: transparent;
   margin-top: 19px;
   font-style: normal;
   font-weight: 500;
@@ -83,6 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
 }
 
 .nav__login-text {
