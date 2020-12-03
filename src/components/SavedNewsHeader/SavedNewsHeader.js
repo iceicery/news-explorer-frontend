@@ -1,0 +1,13 @@
+import Navigation from '../Navigation/Navigation';
+import './SavedNewsHeader.css';
+
+export default function SaveNewsHeader() {
+    return (
+        <section className="savedHeader">
+            <Navigation isLogin={true} />
+            <p className="savedHeader__subtitle">Saved articles</p>
+            <h3 className="savedHeader__title">Elise, you have 5 saved articles</h3>
+            <p className="savedHeader__text">By keywords:</p><p className="savedHeader__text-bold"> Nature, Yellowstone, and 2 other</p>
+        </section>
+    )
+}
