@@ -1,4 +1,4 @@
-import author from '../../images/yellow_me.jpg';
+import author from '../../images/jumping_me.jpg';
 import './About.css';
 
 export default function About() {

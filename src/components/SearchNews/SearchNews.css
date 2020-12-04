@@ -4,14 +4,13 @@
 }
 .searchnews__title {
   margin-top: 80px;
+  margin-bottom: 0;
   margin-left: 7%;
-  margin-bottom: 64px;
   font-family: "RobotoSlab";
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
   line-height: 46px;
-
   color: #1a1b22;
 }
 

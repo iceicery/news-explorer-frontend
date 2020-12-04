@@ -1,0 +1,85 @@
+.overlay {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #000;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.popup {
+  width: 430px;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  top: 207px;
+  left: calc(50% - 215px);
+  z-index: 2;
+}
+
+.popup__close {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background-image: url("../../images/close.png");
+  background-color: transparent;
+  position: absolute;
+  top: -54.82px;
+  right: -55.31px;
+  border: none;
+}
+
+.popup__close:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.popup__form {
+  width: 358px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 34px;
+  margin-bottom: 28px;
+}
+.popup__title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1a1b22;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.popup__text {
+  padding: 0;
+  margin: 14px 0 0 0;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.popup__text-left {
+  padding: 0;
+  margin: 16px 0 0 0;
+  text-align: left;
+}
+
+.popup__link {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #2f71e5;
+}

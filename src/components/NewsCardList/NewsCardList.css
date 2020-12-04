@@ -1,12 +1,17 @@
 .newscardlist {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  width: 100%;
+  background-color: #f5f6f7;
+}
+
+.newscardlist__container {
   width: 86%;
   margin-right: auto;
   margin-left: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 16px;
-  justify-content: space-between;
   list-style: none;
-  margin-bottom: 64px;
   padding: 0;
 }
