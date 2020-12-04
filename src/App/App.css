@@ -2,5 +2,7 @@
 @import url("../vendor/font/font.css");
 
 .app {
+  width: 100%;
+  position: relative;
   font-family: "Roboto", "Inter", "Arial", sans-serif;
 }

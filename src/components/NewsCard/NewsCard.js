@@ -1,11 +1,15 @@
 import newsImg from '../../images/image_08.png';
 import './NewsCard.css';
 
-export default function NewsCard() {
+export default function NewsCard({ isLogin }) {
+    const iconClass = isLogin ? "newscard__icon-trash" : "newscard__icon";
+    const popupText = isLogin ? "Remove from saved" : "Sign in to save articles";
+    const keywordClass = isLogin ? "newscard__keyword" : "hidden";
     return (
         <li className="newscard">
-            <div className="newscard__icon"></div>
-            <p className="newscard__popup">Sign in to save articles</p>
+            <div className={iconClass}></div>
+            <p className="newscard__popup">{popupText}</p>
+            <p className={keywordClass}>Nature</p>
             <img src={newsImg} alt="news" className="newscard__img" />
             <div className="newscard__text-box">
                 <p className="newscard__date">November 4, 2020</p>
