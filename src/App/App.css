@@ -6,3 +6,11 @@
   position: relative;
   font-family: "Roboto", "Inter", "Arial", sans-serif;
 }
+
+*:focus {
+  outline: none;
+}
+
+.link {
+  text-decoration: none;
+}

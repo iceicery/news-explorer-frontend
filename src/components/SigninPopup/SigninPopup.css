@@ -10,6 +10,19 @@
   border-left: none;
   border-right: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 9px;
+}
+
+.signin__input::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.signin__input:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.signin__input::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.2);
 }
 
 .signin__input-title {
@@ -40,6 +53,7 @@
   width: 100%;
   background: #2f71e5;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border: none;
   border-radius: 100px;
   margin-top: 39px;
 }

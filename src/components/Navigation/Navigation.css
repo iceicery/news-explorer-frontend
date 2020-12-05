@@ -69,6 +69,9 @@
   border: 1px solid #fff;
   box-sizing: border-box;
   border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav__signin:hover {
@@ -85,7 +88,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .nav__login-text {
@@ -112,4 +115,16 @@
   padding-bottom: 23px;
   border-bottom: 3px solid #1a1b22;
   color: #1a1b22;
+}
+
+.nav__place-select-light {
+  margin-top: 30px;
+  margin-left: 76px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  padding-bottom: 23px;
+  color: #fff;
 }
