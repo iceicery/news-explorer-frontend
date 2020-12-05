@@ -83,3 +83,7 @@
   text-decoration: none;
   color: #2f71e5;
 }
+
+.hidden {
+  display: none;
+}

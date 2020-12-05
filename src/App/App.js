@@ -1,14 +1,15 @@
-import React from 'react';
-import { Route, Switch, Redirect, BrowserRouter, withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import SaveNews from '../components/SaveNews/SaveNews';
 import Main from '../components/Main/Main';
-import PopupWithForm from '../components/PopupWithForm/PopupWithForm';
 import SigninPopup from '../components/SigninPopup/SigninPopup';
-import SignupPopup from '../components/SignupPopup/SignupPopup';
-import ConfirmPopup from '../components/ConfirmPopup/ConfirmPopup';
 
 function App() {
+  const [isSigninOpen, setSigninOpen] = useState(false);
+  function handleSigninOpen() {
+    setSigninOpen(true);
+  }
   return (
     <BrowserRouter>
       <Switch>
@@ -19,7 +20,8 @@ function App() {
         </Route>
         <Route path="/">
           <div className="app">
-            <Main />
+            <SigninPopup isSigninOpen={isSigninOpen} />
+            <Main handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} />
           </div>
         </Route>
       </Switch>

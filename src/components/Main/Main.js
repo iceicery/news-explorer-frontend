@@ -4,10 +4,10 @@ import Header from "../Header/Header";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import SearchNews from "../SearchNews/SearchNews";
 
-export default function Main() {
+export default function Main({ handleSigninOpen }) {
     return (
         <section className="main">
-            <Header />
+            <Header handleSigninOpen={handleSigninOpen} />
             <SearchNews isLogin={false} />
             <About />
             <Footer />

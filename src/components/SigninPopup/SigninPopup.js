@@ -1,9 +1,9 @@
 import './SigninPopup.css';
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export default function SigninPopup() {
+export default function SigninPopup({ isSigninOpen }) {
     return (
-        <PopupWithForm withForm={true} title="Sign in" link="Sign up">
+        <PopupWithForm isOpen={isSigninOpen} withForm={true} title="Sign in" link="Sign up">
             <p className="signin__input-title" >Email</p>
             <input className="signin__input" required name="email" type="email" placeholder="Enter email" />
             <span className="signin__input-err">error</span>
