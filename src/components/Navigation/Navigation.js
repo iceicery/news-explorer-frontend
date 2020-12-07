@@ -3,7 +3,7 @@ import logoutIcon from '../../images/logout.png';
 import logoutIconLight from '../../images/logout-light.png';
 import { Link } from "react-router-dom";
 
-export default function Navigation({ isLight, isLogin, handleSigninOpen, handleLogout }) {
+export default function Navigation({ isLight, isLogin, handleSigninOpen, handleLogout, handleNavOpen }) {
     const navClass = isLight ? "nav nav-signin" : "nav";
     const titleClass = isLight ? "nav__title nav__login" : "nav__title";
     const placeClass = isLight ? "nav__place nav__login" : "nav__place";
@@ -11,12 +11,17 @@ export default function Navigation({ isLight, isLogin, handleSigninOpen, handleL
     const placeClassSelect = isLight ? "nav__place-select" : "nav__place-select-light";
     const logoutImg = isLight ? logoutIcon : logoutIconLight;
     const tempName = 'Elise';
+    const menuClass = isLight ? "nav__menu nav__menu-dark" : "nav__menu";
     function onClickSignin() {
         handleSigninOpen();
     }
 
     function onClickLogout() {
         handleLogout();
+    }
+    function onClickNavOpen() {
+        handleNavOpen();
+        console.log("click");
     }
 
     return (
@@ -42,6 +47,7 @@ export default function Navigation({ isLight, isLogin, handleSigninOpen, handleL
                         <button className={signClass} onClick={onClickSignin}>Sign In</button>
                     }
                 </div>
+                <button className={menuClass} onClick={onClickNavOpen}></button>
             </div>
         </nav>
     )
