@@ -82,6 +82,8 @@
   line-height: 22px;
   text-decoration: none;
   color: #2f71e5;
+  border: none;
+  background-color: transparent;
 }
 
 .hidden {

@@ -1,14 +1,27 @@
+import { useState } from 'react';
 import newsImg from '../../images/image_08.png';
 import './NewsCard.css';
 
-export default function NewsCard({ isLogin }) {
-    const iconClass = isLogin ? "newscard__icon-trash" : "newscard__icon";
+export default function NewsCard({ isLogin, isSavedPage }) {
+    const [isSave, setIsSave] = useState(false);
+    function onClickSaveIcon() {
+        if (!isSave) {
+            setIsSave(true);
+        } else {
+            setIsSave(false);
+        }
+    }
+    const iconClass = isLogin ?
+        (isSavedPage ? "newscard__icon-trash" :
+            (isSave ? "newscard__icon-blue" : "newscard__icon"))
+        : "newscard__icon";
     const popupText = isLogin ? "Remove from saved" : "Sign in to save articles";
-    const keywordClass = isLogin ? "newscard__keyword" : "hidden";
+    const popupClass = isLogin ? (isSavedPage ? "newscard__popup" : "hidden") : "newscard__popup";
+    const keywordClass = isSavedPage ? "newscard__keyword" : "hidden";
     return (
         <li className="newscard">
-            <div className={iconClass}></div>
-            <p className="newscard__popup">{popupText}</p>
+            <div className={iconClass} onClick={onClickSaveIcon}></div>
+            <p className={popupClass}>{popupText}</p>
             <p className={keywordClass}>Nature</p>
             <img src={newsImg} alt="news" className="newscard__img" />
             <div className="newscard__text-box">
