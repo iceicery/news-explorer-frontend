@@ -1,16 +1,22 @@
 import "./Navigation.css";
 import logoutIcon from '../../images/logout.png';
+import logoutIconLight from '../../images/logout-light.png';
 import { Link } from "react-router-dom";
-export default function Navigation({ isLight, isLogin, handleSigninOpen }) {
+
+export default function Navigation({ isLight, isLogin, handleSigninOpen, handleLogout }) {
     const navClass = isLight ? "nav nav-signin" : "nav";
     const titleClass = isLight ? "nav__title nav__login" : "nav__title";
     const placeClass = isLight ? "nav__place nav__login" : "nav__place";
     const signClass = isLight ? "nav__signin nav__signined" : "nav__signin";
     const placeClassSelect = isLight ? "nav__place-select" : "nav__place-select-light";
+    const logoutImg = isLight ? logoutIcon : logoutIconLight;
     const tempName = 'Elise';
-
     function onClickSignin() {
-        handleSigninOpen(true);
+        handleSigninOpen();
+    }
+
+    function onClickLogout() {
+        handleLogout();
     }
 
     return (
@@ -31,7 +37,7 @@ export default function Navigation({ isLight, isLogin, handleSigninOpen }) {
                     {isLogin ?
                         <button className={signClass}>
                             <p className="nav__login-text">{tempName}</p>
-                            <img src={logoutIcon} alt="logout icon" className="nav__icon" />
+                            <Link to="/" className="link"><img src={logoutImg} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
                         </button> :
                         <button className={signClass} onClick={onClickSignin}>Sign In</button>
                     }

@@ -1,9 +1,13 @@
 import './SignupPopup.css';
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-export default function SignupPopup() {
+export default function SignupPopup({ isSignupOpen, handleSigninOpen, handlePopupClose, handleConfirmOpen }) {
+    function onClickSubmit() {
+        handlePopupClose();
+        handleConfirmOpen();
+    }
     return (
-        <PopupWithForm withForm={true} title="Sign up" link="Sign in">
+        <PopupWithForm isOpen={isSignupOpen} handleOpen={handleSigninOpen} handlePopupClose={handlePopupClose} withForm={true} title="Sign up" link="Sign in">
             <p className="signup__input-title">Email</p>
             <input className="signup__input" required name="email" type="email" placeholder="Enter email" />
             <span className="signup__input-err">error</span>
@@ -13,7 +17,7 @@ export default function SignupPopup() {
             <p className="signup__input-title">Username</p>
             <input className="signup__input" required name="name" placeholder="Enter your username" minLength="2" maxLength="30" />
             <span className="signup__input-err">error</span>
-            <button className="signup__button"><p className="signup__button-text">Sign up</p></button>
+            <button className="signup__button" onClick={onClickSubmit}><p className="signup__button-text">Sign up</p></button>
         </PopupWithForm>
     )
 }

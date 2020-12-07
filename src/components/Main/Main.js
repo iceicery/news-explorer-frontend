@@ -1,14 +1,13 @@
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import SearchNews from "../SearchNews/SearchNews";
 
-export default function Main({ handleSigninOpen }) {
+export default function Main({ handleSigninOpen, isLogin, handleLogout }) {
     return (
         <section className="main">
-            <Header handleSigninOpen={handleSigninOpen} />
-            <SearchNews isLogin={false} />
+            <Header isLogin={isLogin} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} />
+            <SearchNews isLogin={isLogin} />
             <About />
             <Footer />
         </section>

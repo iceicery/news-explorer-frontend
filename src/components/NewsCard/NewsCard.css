@@ -22,6 +22,20 @@
   background-image: url("../../images/bookmark1.png");
 }
 
+.newscard__icon-blue {
+  background-image: url("../../images/save_icon.png");
+  background-color: #fff;
+  background-repeat: no-repeat;
+  padding: 11px 13px 10px 13px;
+  object-fit: contain;
+  width: 14px;
+  height: 19px;
+  border-radius: 8px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
 .newscard__popup {
   display: none;
   font-style: normal;
