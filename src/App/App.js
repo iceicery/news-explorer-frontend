@@ -41,7 +41,6 @@ function App() {
 
   function handleLogin() {
     setIsLogin(true);
-    console.log('handleLogin');
   }
   function handleLogout() {
     setIsLogin(false);

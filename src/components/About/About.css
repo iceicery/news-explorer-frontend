@@ -92,7 +92,7 @@
     background-color: #fff;
     color: #1a1b22;
     padding-top: 32px;
-    padding-bottom: 128px;
+    padding-bottom: 148px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -105,13 +105,15 @@
     border-radius: 100%;
     object-fit: cover;
     margin-top: 0;
-    border: solid red;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .about__text-box {
     width: 90%;
     align-self: center;
-    border: solid;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .about__title {
