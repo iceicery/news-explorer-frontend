@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
-import SaveNews from '../components/SaveNews/SaveNews';
-import Main from '../components/Main/Main';
-import SigninPopup from '../components/SigninPopup/SigninPopup';
-import SignupPopup from '../components/SignupPopup/SignupPopup';
-import ConfirmPopup from '../components/ConfirmPopup/ConfirmPopup';
-import NavPopup from '../components/NavPopup/NavPopup';
+import SaveNews from '../SaveNews/SaveNews';
+import Main from '../Main/Main';
+import SigninPopup from '../SigninPopup/SigninPopup';
+import SignupPopup from '../SignupPopup/SignupPopup';
+import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
+import NavPopup from '../NavPopup/NavPopup';
 
 function App() {
   const [isSigninOpen, setSigninOpen] = useState(false);
