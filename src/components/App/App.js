@@ -14,6 +14,21 @@ function App() {
   const [isConfirmOpen, setConfirmOpen] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('user');
+
+  function handleName(name) {
+    setName(name);
+  }
+  function handleEmail(email) {
+    setEmail(email);
+  }
+
+  function handlePwd(password) {
+    setPassword(password);
+  }
+
   function handleSigninOpen() {
     setSigninOpen(true);
   }
@@ -50,19 +65,19 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/saved-news">
-          <div className="app">
-            <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-            <SaveNews handleLogout={handleLogout} isLogin={isLogin} handleNavOpen={handleNavOpen} />
-          </div>
+          <section className="app">
+            <NavPopup isOpen={isNavOpen} name={name} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
+            <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} handleNavOpen={handleNavOpen} />
+          </section>
         </Route>
         <Route path="/">
-          <div className="app">
-            <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-            <SigninPopup isSigninOpen={isSigninOpen} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} />
-            <SignupPopup isSignupOpen={isSignupOpen} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} />
+          <section className="app">
+            <NavPopup isOpen={isNavOpen} isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
+            <SigninPopup isSigninOpen={isSigninOpen} email={email} password={password} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} handleEmail={handleEmail} handlePwd={handlePwd} />
+            <SignupPopup isSignupOpen={isSignupOpen} email={email} password={password} name={name} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} handleEmail={handleEmail} handlePwd={handlePwd} handleName={handleName} />
             <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-            <Main isLogin={isLogin} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
-          </div>
+            <Main isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+          </section>
         </Route>
       </Switch>
     </BrowserRouter>

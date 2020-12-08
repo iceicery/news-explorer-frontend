@@ -69,10 +69,26 @@
 }
 
 .signin__button-diable {
+  width: 100%;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border: none;
+  margin-top: 39px;
   background: #e6e8eb;
   border-radius: 100px;
 }
 
 .signin__button-text-disable {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
   color: #b6bcbf;
+}
+
+@media screen and (max-width: 480px) {
+  .signin__button {
+    margin-top: 23px;
+  }
 }
