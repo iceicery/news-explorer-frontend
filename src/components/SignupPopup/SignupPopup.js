@@ -17,7 +17,7 @@ export default function SignupPopup({ isSignupOpen, handleSigninOpen, handlePopu
             <p className="signup__input-title">Username</p>
             <input className="signup__input" required name="name" placeholder="Enter your username" minLength="2" maxLength="30" />
             <span className="signup__input-err">error</span>
-            <button className="signup__button" onClick={onClickSubmit}><p className="signup__button-text">Sign up</p></button>
+            <button className="signup__button" onClick={onClickSubmit} type="button"><p className="signup__button-text">Sign up</p></button>
         </PopupWithForm>
     )
 }
