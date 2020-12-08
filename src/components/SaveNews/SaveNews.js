@@ -3,10 +3,10 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 import SaveNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import './SaveNews.css';
 
-export default function SaveNews({ handleLogout, isLogin, handleNavOpen }) {
+export default function SaveNews({ handleLogout, isLogin, name, handleNavOpen }) {
     return (
         <section>
-            <SaveNewsHeader isLogin={isLogin} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            <SaveNewsHeader isLogin={isLogin} name={name} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             <NewsCardList isLogin={isLogin} isSavedPage={true} />
             <Footer />
         </section>

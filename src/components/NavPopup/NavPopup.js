@@ -2,7 +2,7 @@ import "./NavPopup.css";
 import { Link } from "react-router-dom";
 import { useCallback, useEffect } from "react";
 import logoutIconLight from '../../images/logout-light.png';
-export default function NavPopup({ isOpen, isLogin, handleSigninOpen, handlePopupClose, handleLogout }) {
+export default function NavPopup({ isOpen, isLogin, name, handleSigninOpen, handlePopupClose, handleLogout }) {
     function onClickSignin() {
         handlePopupClose();
         handleSigninOpen();
@@ -19,7 +19,6 @@ export default function NavPopup({ isOpen, isLogin, handleSigninOpen, handlePopu
             handlePopupClose();
         }
     }, [handlePopupClose]);
-    const tempName = "Elise";
 
     useEffect(() => {
         document.addEventListener("keydown", escFunction, false);
@@ -51,7 +50,7 @@ export default function NavPopup({ isOpen, isLogin, handleSigninOpen, handlePopu
                     }
                     {isLogin ?
                         <button className="navpopup__button">
-                            <p className="nav__login-text">{tempName}</p>
+                            <p className="nav__login-text">{name}</p>
                             <Link to="/" className="link" onClick={onClickClose}><img src={logoutIconLight} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
                         </button> :
                         <button className="navpopup__button" onClick={onClickSignin}>Sign In</button>

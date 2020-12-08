@@ -22,7 +22,7 @@
   color: #1a1b22;
 }
 .notfound__text {
-  width: 356px;
+  max-width: 356px;
   margin-top: 16px;
   margin-bottom: 80px;
   padding: 0;

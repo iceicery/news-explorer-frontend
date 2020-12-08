@@ -69,10 +69,20 @@
 }
 
 .signup__button-diable {
-  background: #e6e8eb;
+  width: 100%;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border: none;
   border-radius: 100px;
+  margin-top: 39px;
+  background: #e6e8eb;
 }
 
-.signup__button-text-disable {
+.signup__button-text-diable {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
   color: #b6bcbf;
 }
