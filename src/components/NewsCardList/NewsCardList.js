@@ -8,6 +8,8 @@ export default function NewsCardList({ isLogin, isSavedPage }) {
                 <NewsCard isLogin={isLogin} isSavedPage={isSavedPage} />
                 <NewsCard isLogin={isLogin} isSavedPage={isSavedPage} />
                 <NewsCard isLogin={isLogin} isSavedPage={isSavedPage} />
+                <NewsCard isLogin={isLogin} isSavedPage={isSavedPage} />
+                <NewsCard isLogin={isLogin} isSavedPage={isSavedPage} />
             </ul>
         </section>
     )

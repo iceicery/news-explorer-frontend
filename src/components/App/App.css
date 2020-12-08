@@ -1,5 +1,5 @@
-@import url("../vendor/normalize.css");
-@import url("../vendor/font/font.css");
+@import url("../../vendor/normalize.css");
+@import url("../../vendor/font/font.css");
 
 .app {
   width: 100%;
