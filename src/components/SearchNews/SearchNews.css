@@ -32,6 +32,11 @@
   color: #1a1b22;
 }
 
+.searchnews__button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 481px) and (max-width: 1023px) {
   .searchnews {
     background-color: #f5f6f7;

@@ -27,6 +27,9 @@
   color: #fff;
 }
 
+.nav__link {
+  text-decoration: none;
+}
 .nav__box {
   display: flex;
   justify-content: space-between;
@@ -72,6 +75,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
 }
 
 .nav__signin:hover {

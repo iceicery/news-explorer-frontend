@@ -25,14 +25,14 @@ export default function Navigation({ isLight, isLogin, name, handleSigninOpen, h
     return (
         <nav className={navClass}>
             <div className="nav__container">
-                <Link to="/" className="link"><p className={titleClass}>NewsExplorer</p></Link>
+                <Link to="/" className="nav__link"><p className={titleClass}>NewsExplorer</p></Link>
                 <div className="nav__box">
                     {isLogin ?
                         <div className="nav__place-box">
-                            <Link to="/" className="link">
+                            <Link to="/" className="nav__link">
                                 <p className={placeClass}>Home</p>
                             </Link>
-                            <Link to="/saved-news" className="link">
+                            <Link to="/saved-news" className="nav__link">
                                 <p className={placeClassSelect}>Saved articles</p>
                             </Link>
                         </div>
@@ -40,7 +40,7 @@ export default function Navigation({ isLight, isLogin, name, handleSigninOpen, h
                     {isLogin ?
                         <button className={signClass}>
                             <p className="nav__login-text">{name}</p>
-                            <Link to="/" className="link"><img src={logoutImg} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
+                            <Link to="/" className="nav__link"><img src={logoutImg} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
                         </button> :
                         <button className={signClass} onClick={onClickSignin}>Sign In</button>
                     }

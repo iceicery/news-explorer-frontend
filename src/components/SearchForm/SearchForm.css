@@ -55,11 +55,16 @@
   right: 0;
   z-index: 1;
   color: #fff;
+  outline: none;
 }
 
 .search__button:hover {
   background: #347eff;
   cursor: pointer;
+}
+
+.search__button:active {
+  background: #2a65cc;
 }
 
 @media screen and (min-width: 481px) and (max-width: 1023px) {

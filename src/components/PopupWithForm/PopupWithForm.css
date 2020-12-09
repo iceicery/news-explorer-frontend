@@ -9,6 +9,22 @@
   z-index: 2;
 }
 
+.popup__overlay {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #000;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.popup__hidden {
+  display: none;
+}
+
 .popup__close {
   width: 40px;
   height: 40px;
@@ -72,6 +88,7 @@
   color: #2f71e5;
   border: none;
   background-color: transparent;
+  outline: none;
 }
 .popup__container-mobile {
   width: 100%;
