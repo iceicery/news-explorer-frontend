@@ -4,11 +4,7 @@
 .app {
   width: 100%;
   position: relative;
-  font-family: "Roboto", "Inter", "Arial", sans-serif;
-}
-
-*:focus {
-  outline: none;
+  font-family: "Roboto", "Inter", Arial, Helvetica, sans-serif;
 }
 
 .link {

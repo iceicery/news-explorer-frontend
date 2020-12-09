@@ -63,14 +63,19 @@
     display: flex;
     margin-right: 25.89px;
     margin-left: auto;
+    align-items: center;
+    border: solid blue;
   }
   .footer__link {
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 24px;
+    margin: 0;
     margin-left: 24px;
     color: #1a1b22;
+    padding: 0;
+    border: solid red;
   }
 
   .footer__icon-box {
@@ -91,6 +96,7 @@
 }
 @media screen and (max-width: 480px) {
   .footer {
+    padding-top: 20px;
     display: flex;
     flex-direction: column-reverse;
   }
