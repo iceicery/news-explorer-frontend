@@ -32,9 +32,9 @@ export default function PopupWithForm({ isOpen, handleOpen, handlePopupClose, wi
         <>
             <div className={overlayClass}></div>
             <section className={popupClass}>
-                <div className="navpopup__container popup__mobile">
-                    <p className="navpopup__title">NewsExplorer</p>
-                    <button className="navpopup__close" onClick={onClickClose}></button>
+                <div className="popup__container-nav popup__mobile">
+                    <p className="popup__title-nav">NewsExplorer</p>
+                    <button className="popup__close-nav" onClick={onClickClose}></button>
                 </div>
                 <div className="popup__container-mobile">
                     <button className="popup__close" onClick={onClickClose}></button>

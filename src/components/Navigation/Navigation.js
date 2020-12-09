@@ -4,7 +4,7 @@ import logoutIconLight from '../../images/logout-light.png';
 import { Link } from "react-router-dom";
 
 export default function Navigation({ isLight, isLogin, name, handleSigninOpen, handleLogout, handleNavOpen }) {
-    const navClass = isLight ? "nav nav-signin" : "nav";
+    const navClass = isLight ? "nav nav__light" : "nav";
     const titleClass = isLight ? "nav__title nav__login" : "nav__title";
     const placeClass = isLight ? "nav__place nav__login" : "nav__place";
     const signClass = isLight ? "nav__signin nav__signined" : "nav__signin";

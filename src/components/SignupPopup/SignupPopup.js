@@ -34,7 +34,7 @@ export default function SignupPopup({ isSignupOpen, email, password, name, handl
         }
         handleName(e.target.value);
     }
-    const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" || errMessageName !== "" ? true : false);
+    const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" || errMessageName !== "" || email === "" || password === "" || name === "" ? true : false);
     const buttonClass = disableButton ? "signup__button-diable" : "signup__button";
     const buttonTextClass = disableButton ? "signup__button-text-diable" : "signup__button-text";
     return (

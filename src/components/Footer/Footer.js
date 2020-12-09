@@ -8,14 +8,14 @@ export default function Footer() {
         <footer className="footer">
             <p className="footer__text">© 2020 Supersite, Powered by News API</p>
             <div className="footer__container">
-                <div className="footer__link-box">
+                <nav className="footer__link-box">
                     <Link to="/" className="link"><p className="footer__link">Home</p></Link>
-                    <p className="footer__link">Practicum by Yandex</p>
-                </div>
-                <div className="footer__icon-box">
-                    <img src={github} alt="github icon" className="footer__icon" />
-                    <img src={fb} alt="facebook icon" className="footer__icon" />
-                </div>
+                    <a href="https://practicum.yandex.com/" target="_blank" rel="noreferrer" className="link" ><p className="footer__link">Practicum by Yandex</p></a>
+                </nav>
+                <nav className="footer__icon-box">
+                    <a href="https://github.com/iceicery" target="_blank" rel="noreferrer" className="link" ><img src={github} alt="github icon" className="footer__icon" /></a>
+                    <a href="https://www.facebook.com/YPracticum" target="_blank" rel="noreferrer" className="link" ><img src={fb} alt="facebook icon" className="footer__icon" /></a>
+                </nav>
             </div>
         </footer>
     )

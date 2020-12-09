@@ -25,7 +25,7 @@ export default function SigninPopup({ isSigninOpen, email, password, handleSignu
         }
         handlePwd(e.target.value);
     }
-    const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" ? true : false);
+    const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" || email === "" || password === "" ? true : false);
     const buttonClass = disableButton ? "signin__button-diable" : "signin__button";
     const buttonTextClass = disableButton ? "signin__button-text-diable" : "signin__button-text";
 
