@@ -28,30 +28,30 @@ export default function NavPopup({ isOpen, isLogin, name, handleSigninOpen, hand
         };
     }, [escFunction]);
 
-    const overlayClass = isOpen ? "overlay" : "hidden";
-    const navpopupClass = isOpen ? "navpopup" : "hidden";
+    const overlayClass = isOpen ? "navpopup__overlay" : "navpopup__hidden";
+    const navpopupClass = isOpen ? "navpopup" : "navpopup__hidden";
 
     return (
         <>
             <div className={overlayClass}></div>
             <nav className={navpopupClass}>
                 <div className="navpopup__container">
-                    <Link to="/" className="link"><p className="navpopup__title">NewsExplorer</p></Link>
+                    <Link to="/" className="navpopup__link"><p className="navpopup__title">NewsExplorer</p></Link>
                     <button className="navpopup__close" onClick={onClickClose}></button>
                 </div>
                 <div className="navpopup__box">
-                    <Link to="/" className="link" onClick={onClickClose}>
+                    <Link to="/" className="navpopup__link" onClick={onClickClose}>
                         <p className="navpopup__place">Home</p>
                     </Link>
                     {isLogin &&
-                        <Link to="/saved-news" className="link" onClick={onClickClose}>
+                        <Link to="/saved-news" className="navpopup__link" onClick={onClickClose}>
                             <p className="navpopup__place">Saved articles</p>
                         </Link>
                     }
                     {isLogin ?
                         <button className="navpopup__button">
                             <p className="nav__login-text">{name}</p>
-                            <Link to="/" className="link" onClick={onClickClose}><img src={logoutIconLight} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
+                            <Link to="/" className="navpopup__link" onClick={onClickClose}><img src={logoutIconLight} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
                         </button> :
                         <button className="navpopup__button" onClick={onClickSignin}>Sign In</button>
                     }

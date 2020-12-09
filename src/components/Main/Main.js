@@ -2,13 +2,15 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SearchNews from "../SearchNews/SearchNews";
-//import Preloader from "../Preloader/Preloader";
-//import NotFound from "../NotFound/NotFound";
+import Preloader from "../Preloader/Preloader";
+import NotFound from "../NotFound/NotFound";
 
 export default function Main({ handleSigninOpen, isLogin, name, handleLogout, handleNavOpen }) {
     return (
         <section className="main">
             <Header isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            <Preloader isLoading={false} />
+            <NotFound isFound={true} />
             <SearchNews isLogin={isLogin} />
             <About />
             <Footer />

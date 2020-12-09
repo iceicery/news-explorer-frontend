@@ -6,23 +6,3 @@
   position: relative;
   font-family: "Roboto", "Inter", Arial, Helvetica, sans-serif;
 }
-
-.link {
-  text-decoration: none;
-}
-
-.overlay {
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  background: #000;
-  opacity: 0.5;
-  z-index: 2;
-}
-
-.hidden {
-  display: none;
-}

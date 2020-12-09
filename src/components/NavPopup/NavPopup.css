@@ -7,6 +7,22 @@
   border-bottom-right-radius: 16px;
 }
 
+.navpopup__overlay {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #000;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.navpopup__hidden {
+  display: none;
+}
+
 .navpopup__container {
   width: 90%;
   margin-left: auto;
@@ -41,6 +57,9 @@
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 24px;
+}
+.navpopup__link {
+  text-decoration: none;
 }
 .navpopup__place {
   font-family: "Roboto";

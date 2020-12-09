@@ -4,6 +4,10 @@
   border: solid #f5f6f7;
 }
 
+.preloader__hidden {
+  display: none;
+}
+
 .preloader__circle {
   display: block;
   width: 74px;

@@ -4,6 +4,10 @@
   flex-direction: column;
   align-items: center;
 }
+.notfound__hidden {
+  display: none;
+}
+
 .notfound__img {
   margin-top: 86px;
   margin-bottom: 40px;
