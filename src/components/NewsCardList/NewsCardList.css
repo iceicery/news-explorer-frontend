@@ -28,12 +28,13 @@
     width: 90%;
     margin-right: auto;
     margin-left: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 8px;
-    row-gap: 8px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
+    column-gap: 7px;
+    row-gap: 6px;
   }
 }
 
