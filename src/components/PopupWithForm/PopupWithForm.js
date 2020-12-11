@@ -4,8 +4,8 @@ import './PopupWithForm.css';
 export default function PopupWithForm({ isOpen, handleOpen, handlePopupClose, withForm, title, children, link }) {
     const text = withForm ? "or " : "";
     const linkClass = withForm ? "popup__text" : "popup__text-left";
-    const overlayClass = isOpen ? "popup__overlay" : "popup__hidden";
-    const popupClass = isOpen ? "popup" : "popup__hidden";
+    const overlayClass = isOpen ? "popup-overlay" : "popup-hidden";
+    const popupClass = isOpen ? "popup" : "popup-hidden";
     const escFunction = useCallback((event) => {
         if (event.keyCode === 27) {
             handlePopupClose();

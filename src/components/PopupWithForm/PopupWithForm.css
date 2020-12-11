@@ -9,7 +9,7 @@
   z-index: 2;
 }
 
-.popup__overlay {
+.popup-overlay {
   position: absolute;
   right: 0;
   left: 0;
@@ -21,7 +21,7 @@
   z-index: 2;
 }
 
-.popup__hidden {
+.popup-hidden {
   display: none;
 }
 
@@ -50,7 +50,7 @@
   margin-bottom: 28px;
 }
 .popup__title {
-  font-family: Roboto;
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -65,7 +65,7 @@
   padding: 0;
   margin: 14px 0 0 0;
   text-align: center;
-  font-family: Inter;
+  font-family: "Inter";
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -149,7 +149,7 @@
     margin-bottom: auto;
   }
   .popup__title {
-    font-family: Roboto;
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -164,7 +164,7 @@
     padding: 0;
     margin: 14px 0 0 0;
     text-align: center;
-    font-family: Inter;
+    font-family: "Inter";
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

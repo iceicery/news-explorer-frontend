@@ -1,7 +1,7 @@
 import './Preloader.css';
 
 export default function Preloader({ isLoading }) {
-    const preloaderClass = isLoading ? "preloader" : "preloader__hidden";
+    const preloaderClass = isLoading ? "preloader" : "preloader-hidden";
     return (
         <section className={preloaderClass}>
             <div className="preloader__circle"></div>

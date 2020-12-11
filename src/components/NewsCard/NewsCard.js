@@ -16,8 +16,8 @@ export default function NewsCard({ isLogin, isSavedPage }) {
             (isSave ? "newscard__icon-blue" : "newscard__icon"))
         : "newscard__icon";
     const popupText = isLogin ? "Remove from saved" : "Sign in to save articles";
-    const popupClass = isLogin ? (isSavedPage ? "newscard__popup" : "newscard__hidden") : "newscard__popup";
-    const keywordClass = isSavedPage ? "newscard__keyword" : "newscard__hidden";
+    const popupClass = isLogin ? (isSavedPage ? "newscard__popup" : "newscard-hidden") : "newscard__popup";
+    const keywordClass = isSavedPage ? "newscard__keyword" : "newscard-hidden";
     return (
         <li className="newscard">
             <div className={iconClass} onClick={onClickSaveIcon}></div>
