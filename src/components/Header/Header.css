@@ -44,9 +44,9 @@
 
   .header__title-box {
     margin-right: auto;
-    margin-left: 163px;
+    margin-left: calc((100% - 452px) / 2);
     margin-top: 38px;
-    width: 385px;
+    max-width: 385px;
     font-family: "RobotoSlab";
   }
 
