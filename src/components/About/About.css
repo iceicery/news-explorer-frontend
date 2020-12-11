@@ -50,27 +50,28 @@
     color: #1a1b22;
     padding-top: 41px;
     padding-bottom: 61px;
-    width: 100%;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
   }
 
   .about__img {
-    width: 232px;
-    height: 232px;
+    width: 32.2vw;
+    height: 32.2vw;
     border-radius: 100%;
     object-fit: cover;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-right: 8px;
-    margin-left: 40px;
+    margin-right: 0;
+    margin-left: 0;
     align-self: center;
   }
 
   .about__text-box {
-    margin-left: 40px;
-    width: 424px;
+    width: 41.2vw;
     align-self: center;
   }
 
