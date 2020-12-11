@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Roboto";
   src: url("./final-project_fonts_latin/roboto-400-regular.woff");
-  font-weight: normal;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -28,26 +28,33 @@
 @font-face {
   font-family: "Inter";
   src: url("./final-project_fonts_latin/inter-400-regular.woff");
-  font-weight: normal;
+  font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: "Inter";
   src: url("./final-project_fonts_latin/inter-500.woff");
-  font-weight: bold;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "RobotoSlab";
-  src: url("./fonts-backend/robotoslab-regular.woff");
-  font-weight: normal;
+  font-weight: 500;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Sourcesanspro";
-  src: url("./fonts-backend/sourcesanspro-regular.woff");
-  font-weight: normal;
+  src: url("./final-project_fonts_latin/sourcesanspro-regular.woff");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RobotoSlab";
+  src: url("./final-project_fonts_latin/roboto-slab-400-regular.woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RobotoSlab";
+  src: url("./final-project_fonts_latin/roboto-slab-700.woff");
+  font-weight: 700;
   font-display: swap;
 }
