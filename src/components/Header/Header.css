@@ -1,7 +1,11 @@
 .header {
   width: 100%;
   height: 576px;
-  background-image: url("../../images/header-bg.jpg");
+  background-image: url("../../images/background-big.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  object-fit: cover;
+  background-position: center;
 }
 
 .header__title-box {
@@ -39,7 +43,7 @@
   .header {
     width: 100%;
     height: 400px;
-    background-image: url("../../images/header-bg.jpg");
+    background-image: url("../../images/background-m.jpg");
   }
 
   .header__title-box {
@@ -78,7 +82,7 @@
   .header {
     width: 100%;
     height: 536px;
-    background-image: url("../../images/header-bg.jpg");
+    background-image: url("../../images/background-s.jpg");
   }
 
   .header__title-box {
