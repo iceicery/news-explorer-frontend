@@ -35,8 +35,7 @@ export default function SignupPopup({ isSignupOpen, email, password, name, handl
         handleName(e.target.value);
     }
     const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" || errMessageName !== "" || email === "" || password === "" || name === "" ? true : false);
-    const buttonClass = disableButton ? "signup__button-diable" : "signup__button";
-    const buttonTextClass = disableButton ? "signup__button-text-diable" : "signup__button-text";
+    const buttonClass = disableButton ? "signup__button-diable signup__button-text-diable" : "signup__button signup__button-text";
     return (
         <PopupWithForm isOpen={isSignupOpen} handleOpen={handleSigninOpen} handlePopupClose={handlePopupClose} withForm={true} title="Sign up" link="Sign in">
             <p className="signup__input-title">Email</p>
@@ -48,7 +47,7 @@ export default function SignupPopup({ isSignupOpen, email, password, name, handl
             <p className="signup__input-title">Username</p>
             <input className="signup__input" required name="name" placeholder="Enter your username" minLength="2" maxLength="30" onChange={onChangeName} />
             <span className="signup__input-err">{errMessageName}</span>
-            <button className={buttonClass} onClick={onClickSubmit} type="button" disabled={disableButton}><p className={buttonTextClass}>Sign up</p></button>
+            <button className={buttonClass} onClick={onClickSubmit} type="button" disabled={disableButton}>Sign up</button>
         </PopupWithForm>
     )
 }

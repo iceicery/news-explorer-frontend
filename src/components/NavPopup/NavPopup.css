@@ -61,6 +61,12 @@
 .navpopup__link {
   text-decoration: none;
 }
+.navpopup__icon {
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+}
+
 .navpopup__place {
   font-family: "Roboto";
   font-style: normal;

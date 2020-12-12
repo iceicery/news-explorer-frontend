@@ -49,10 +49,10 @@ export default function NavPopup({ isOpen, isLogin, name, handleSigninOpen, hand
                         </Link>
                     }
                     {isLogin ?
-                        <button className="navpopup__button">
+                        <div className="navpopup__button">
                             <p className="nav__login-text">{name}</p>
-                            <Link to="/" className="navpopup__link" onClick={onClickClose}><img src={logoutIconLight} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
-                        </button> :
+                            <Link to="/" className="navpopup__link" onClick={onClickClose}><img src={logoutIconLight} alt="logout icon" className="navpopup__icon" onClick={onClickLogout} /></Link>
+                        </div> :
                         <button className="navpopup__button" onClick={onClickSignin}>Sign In</button>
                     }
 
