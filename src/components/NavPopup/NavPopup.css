@@ -47,7 +47,7 @@
   width: 24px;
   height: 24px;
   object-fit: contain;
-  background-repeat: none;
+  background-repeat: no-repeat;
   background-color: transparent;
   background-position: center;
   background-image: url("../../images/close.png");

@@ -6,12 +6,19 @@
   height: 64px;
   background-color: #fff;
   border: 1px solid #d1d2d6;
-  backdrop-filter: blur(8px);
   box-sizing: border-box;
   border-radius: 100px;
   position: relative;
 }
 
+@supports (
+  (-webkit-backdrop-filter: blur(8px)) or (backdrop-filter: blur(8px))
+) {
+  .search {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
 .search__input {
   width: 376px;
   height: 22px;
@@ -76,7 +83,6 @@
     height: 56px;
     background-color: #fff;
     border: 1px solid #d1d2d6;
-    backdrop-filter: blur(8px);
     box-sizing: border-box;
     border-radius: 100px;
     position: relative;
@@ -142,7 +148,6 @@
     height: 56px;
     background-color: #fff;
     border: 1px solid #d1d2d6;
-    backdrop-filter: blur(8px);
     box-sizing: border-box;
     border-radius: 100px;
     position: relative;
