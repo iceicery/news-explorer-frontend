@@ -17,7 +17,7 @@
 }
 .nav__title {
   font-style: normal;
-  font-family: "RobotoSlab";
+  font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 20px;
   line-height: 24px;
@@ -161,7 +161,7 @@
   }
   .nav__title {
     font-style: normal;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 20px;
     line-height: 24px;
@@ -304,7 +304,7 @@
   }
   .nav__title {
     font-style: normal;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 20px;
     line-height: 24px;

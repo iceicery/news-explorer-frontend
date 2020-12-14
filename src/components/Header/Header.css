@@ -13,7 +13,7 @@
   margin-left: auto;
   margin-top: 80px;
   width: 608px;
-  font-family: "RobotoSlab";
+  font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
 }
 
 .header__title {
@@ -51,7 +51,7 @@
     margin-left: calc((100% - 452px) / 2);
     margin-top: 38px;
     max-width: 385px;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
   }
 
   .header__title {
@@ -90,7 +90,7 @@
     margin-left: auto;
     margin-top: 30px;
     width: 90%;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
   }
 
   .header__title {

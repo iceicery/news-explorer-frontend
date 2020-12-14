@@ -6,7 +6,7 @@
   margin-top: 80px;
   margin-bottom: 0;
   margin-left: 7%;
-  font-family: "RobotoSlab";
+  font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
@@ -23,7 +23,7 @@
   background-color: #fff;
   border-radius: 80px;
   border: #fff;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -46,7 +46,7 @@
     margin-top: 40px;
     margin-bottom: 0;
     margin-left: 5.2%;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
@@ -63,7 +63,7 @@
     background-color: #fff;
     border-radius: 80px;
     border: #fff;
-    font-family: "Roboto";
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -81,7 +81,7 @@
     margin-top: 32px;
     margin-bottom: 0;
     margin-left: 5%;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
@@ -99,7 +99,7 @@
     background-color: #fff;
     border-radius: 80px;
     border: #fff;
-    font-family: "Roboto";
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;

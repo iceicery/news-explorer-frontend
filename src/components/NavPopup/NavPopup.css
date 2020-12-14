@@ -32,7 +32,7 @@
 }
 .navpopup__title {
   font-style: normal;
-  font-family: "RobotoSlab";
+  font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 20px;
   line-height: 24px;
@@ -68,7 +68,7 @@
 }
 
 .navpopup__place {
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

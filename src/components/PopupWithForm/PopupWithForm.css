@@ -50,7 +50,7 @@
   margin-bottom: 28px;
 }
 .popup__title {
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -65,7 +65,7 @@
   padding: 0;
   margin: 14px 0 0 0;
   text-align: center;
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -79,7 +79,7 @@
 }
 
 .popup__link {
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -149,7 +149,7 @@
     margin-bottom: auto;
   }
   .popup__title {
-    font-family: "Roboto";
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -164,7 +164,7 @@
     padding: 0;
     margin: 14px 0 0 0;
     text-align: center;
-    font-family: "Inter";
+    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -178,7 +178,7 @@
   }
 
   .popup__link {
-    font-family: "Inter";
+    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -197,7 +197,7 @@
   }
   .popup__title-nav {
     font-style: normal;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 20px;
     line-height: 24px;
