@@ -38,10 +38,10 @@ export default function Navigation({ isLight, isLogin, name, handleSigninOpen, h
                         </div>
                         : <p className={placeClass}>Home</p>}
                     {isLogin ?
-                        <button className={signClass}>
+                        <div className={signClass}>
                             <p className="nav__login-text">{name}</p>
                             <Link to="/" className="nav__link"><img src={logoutImg} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
-                        </button> :
+                        </div> :
                         <button className={signClass} onClick={onClickSignin}>Sign In</button>
                     }
                 </div>

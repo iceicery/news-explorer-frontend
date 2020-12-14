@@ -2,7 +2,7 @@ import ill from '../../images/not-found_v1.png';
 import './NotFound.css';
 
 export default function NotFound({ isFound }) {
-    const notfoundClass = isFound ? "notfound__hidden" : "notfound";
+    const notfoundClass = isFound ? "notfound-hidden" : "notfound";
     return (
         <section className={notfoundClass}>
             <img src={ill} alt="not-found face" className="notfound__img" />

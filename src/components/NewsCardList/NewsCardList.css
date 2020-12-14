@@ -1,4 +1,5 @@
 .newscardlist {
+  border: solid blue;
   padding-top: 64px;
   padding-bottom: 64px;
   width: 100%;
@@ -6,6 +7,7 @@
 }
 
 .newscardlist__container {
+  border: solid red;
   width: 86%;
   margin-right: auto;
   margin-left: auto;
@@ -16,7 +18,7 @@
   list-style: none;
   padding: 0;
 }
-@media screen and (min-width: 481px) and (max-width: 1023px) {
+@media screen and (min-width: 751px) and (max-width: 1023px) {
   .newscardlist {
     padding-top: 32px;
     padding-bottom: 22px;
@@ -30,14 +32,35 @@
     margin-left: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 8px;
-    row-gap: 8px;
     list-style: none;
     padding: 0;
+    column-gap: 7px;
+    row-gap: 6px;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 521px) and (max-width: 750px) {
+  .newscardlist {
+    padding-top: 32px;
+    padding-bottom: 22px;
+    width: 100%;
+    background-color: #f5f6f7;
+  }
+
+  .newscardlist__container {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+    padding: 0;
+    column-gap: 7px;
+    row-gap: 6px;
+  }
+}
+
+@media screen and (max-width: 520px) {
   .newscardlist {
     padding-top: 64px;
     padding-bottom: 9px;
@@ -50,7 +73,6 @@
     width: 90%;
     margin-right: auto;
     margin-left: auto;
-    display: grid;
     grid-template-columns: 1fr;
     column-gap: 0;
     row-gap: 9px;

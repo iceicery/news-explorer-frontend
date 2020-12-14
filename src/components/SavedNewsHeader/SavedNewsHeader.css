@@ -15,7 +15,7 @@
   margin: 0;
   padding: 0;
   margin-left: 7.5%;
-  font-family: "RobotoSlab";
+  font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
@@ -67,7 +67,7 @@
     margin: 0;
     padding: 0;
     margin-left: 5%;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
@@ -120,7 +120,7 @@
     margin: 0;
     padding: 0;
     margin-left: 5%;
-    font-family: "RobotoSlab";
+    font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;

@@ -26,8 +26,7 @@ export default function SigninPopup({ isSigninOpen, email, password, handleSignu
         handlePwd(e.target.value);
     }
     const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" || email === "" || password === "" ? true : false);
-    const buttonClass = disableButton ? "signin__button-diable" : "signin__button";
-    const buttonTextClass = disableButton ? "signin__button-text-diable" : "signin__button-text";
+    const buttonClass = disableButton ? "signin__button-diable signin__button-text-diable" : "signin__button signin__button-text";
 
     return (
         < PopupWithForm isOpen={isSigninOpen} handleOpen={handleSignupOpen} handlePopupClose={handlePopupClose} withForm={true} title="Sign in" link="Sign up" >
@@ -37,7 +36,7 @@ export default function SigninPopup({ isSigninOpen, email, password, handleSignu
             <p className="signin__input-title">Password</p>
             <input className="signin__input" required name="password" type="password" placeholder="Enter password" onChange={onChangePwd} value={password} />
             <span className="signin__input-err">{errMessagePwd}</span>
-            <button className={buttonClass} onClick={onClickLogin} type="button" disabled={disableButton}><p className={buttonTextClass}>Sign in</p></button>
+            <button className={buttonClass} onClick={onClickLogin} type="button" disabled={disableButton}>Sign in</button>
         </PopupWithForm >
     )
 }
