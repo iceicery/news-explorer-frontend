@@ -1,5 +1,4 @@
 .newscard {
-  border: solid green;
   max-height: 576px;
   min-width: 224px;
   overflow: hidden;

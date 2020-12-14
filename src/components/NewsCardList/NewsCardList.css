@@ -1,5 +1,4 @@
 .newscardlist {
-  border: solid blue;
   padding-top: 64px;
   padding-bottom: 64px;
   width: 100%;
@@ -7,7 +6,6 @@
 }
 
 .newscardlist__container {
-  border: solid red;
   width: 86%;
   margin-right: auto;
   margin-left: auto;
