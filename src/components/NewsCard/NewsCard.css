@@ -1,5 +1,6 @@
 .newscard {
-  height: 576px;
+  border: solid green;
+  max-height: 576px;
   min-width: 224px;
   overflow: hidden;
   margin: 0;
@@ -170,10 +171,10 @@
   color: #b6bcbf;
 }
 
-@media screen and (min-width: 481px) and (max-width: 1023px) {
+@media screen and (min-width: 521px) and (max-width: 1023px) {
   .newscard {
-    height: 420px;
-    width: 224px;
+    height: 430px;
+    min-width: 240px;
     overflow: hidden;
     margin: 0;
     padding: 0 0 16px 0;
@@ -341,7 +342,7 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 520px) {
   .newscard {
     height: 440px;
     overflow: hidden;
