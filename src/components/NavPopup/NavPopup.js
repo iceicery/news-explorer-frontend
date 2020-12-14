@@ -28,8 +28,8 @@ export default function NavPopup({ isOpen, isLogin, name, handleSigninOpen, hand
         };
     }, [escFunction]);
 
-    const overlayClass = isOpen ? "navpopup__overlay" : "navpopup__hidden";
-    const navpopupClass = isOpen ? "navpopup" : "navpopup__hidden";
+    const overlayClass = isOpen ? "navpopup-overlay" : "navpopup-hidden";
+    const navpopupClass = isOpen ? "navpopup" : "navpopup-hidden";
 
     return (
         <>
