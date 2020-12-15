@@ -15,10 +15,19 @@ function App() {
   const [isConfirmOpen, setConfirmOpen] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFound, setIsFound] = useState(true);
+  const [isSearchDone, setIsSearchDone] = useState(false);
+  const [isMore, setIsMore] = useState(false);
+  const [cards, setCards] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('user');
   const [topic, setTopic] = useState('');
+
+  function handleShowMore() {
+    setIsMore(true);
+  }
 
   function handleSearch(topic) {
     setTopic(topic)
@@ -67,11 +76,22 @@ function App() {
     setIsLogin(false);
   }
   function handleSearchSubmit(topic) {
-    newsApi.requeireNews(topic)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err))
+    setTimeout(() => {
+      newsApi.requeireNews(topic)
+        .then((data) => {
+          if (!data) {
+            setIsFound(false);
+          }
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            setIsSearchDone(true);
+            setCards(data.articles.slice(0, 6));
+          }, 1000);
+        })
+        .catch((err) => console.log(err))
+    }, 1200);
   }
-
   return (
     <BrowserRouter>
       <Switch>
@@ -87,7 +107,8 @@ function App() {
             <SigninPopup isSigninOpen={isSigninOpen} email={email} password={password} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} handleEmail={handleEmail} handlePwd={handlePwd} />
             <SignupPopup isSignupOpen={isSignupOpen} email={email} password={password} name={name} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} handleEmail={handleEmail} handlePwd={handlePwd} handleName={handleName} />
             <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-            <Main isLogin={isLogin} name={name} topic={topic} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            <Main isLogin={isLogin} name={name} topic={topic} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} isMore={isMore}
+              handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
           </section>
         </Route>
       </Switch>
