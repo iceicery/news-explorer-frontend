@@ -7,7 +7,8 @@ import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
 import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
 import NavPopup from '../NavPopup/NavPopup';
-import { newsApi } from '../../utils/utils';
+import { newsApi, mainApi } from '../../utils/utils';
+import { CurrenUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
   const [isSigninOpen, setSigninOpen] = useState(false);
@@ -24,6 +25,7 @@ function App() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('user');
   const [topic, setTopic] = useState('');
+  const [currentUser, setCurretUser] = useState('user');
 
   function handleShowMore() {
     setIsMore(true);
@@ -93,27 +95,28 @@ function App() {
     }, 1200);
   }
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/saved-news">
-          <section className="app">
-            <NavPopup isOpen={isNavOpen} name={name} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-            <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} handleNavOpen={handleNavOpen} />
-          </section>
-        </Route>
-        <Route path="/">
-          <section className="app">
-            <NavPopup isOpen={isNavOpen} isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-            <SigninPopup isSigninOpen={isSigninOpen} email={email} password={password} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} handleEmail={handleEmail} handlePwd={handlePwd} />
-            <SignupPopup isSignupOpen={isSignupOpen} email={email} password={password} name={name} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} handleEmail={handleEmail} handlePwd={handlePwd} handleName={handleName} />
-            <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-            <Main isLogin={isLogin} name={name} topic={topic} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} isMore={isMore}
-              handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
-          </section>
-        </Route>
-      </Switch>
-    </BrowserRouter>
-
+    <CurrenUserContext.Provider value={currentUser}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/saved-news">
+            <section className="app">
+              <NavPopup isOpen={isNavOpen} name={name} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
+              <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} handleNavOpen={handleNavOpen} />
+            </section>
+          </Route>
+          <Route path="/">
+            <section className="app">
+              <NavPopup isOpen={isNavOpen} isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
+              <SigninPopup isSigninOpen={isSigninOpen} email={email} password={password} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} handleEmail={handleEmail} handlePwd={handlePwd} />
+              <SignupPopup isSignupOpen={isSignupOpen} email={email} password={password} name={name} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} handleEmail={handleEmail} handlePwd={handlePwd} handleName={handleName} />
+              <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
+              <Main isLogin={isLogin} name={name} topic={topic} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} isMore={isMore}
+                handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            </section>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </CurrenUserContext.Provider>
   );
 }
 
