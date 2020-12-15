@@ -1,14 +1,12 @@
 import './SigninPopup.css';
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { useState } from 'react';
+import { mainApi } from '../../utils/utils';
 
 export default function SigninPopup({ isSigninOpen, email, password, handleSignupOpen, handlePopupClose, handleLogin, handleEmail, handlePwd }) {
     const [errMessageEmail, setErrMessageEmail] = useState('');
     const [errMessagePwd, setErrMessagePwd] = useState('');
-    function onClickLogin() {
-        handlePopupClose();
-        handleLogin();
-    }
+
     function onChangeEmail(e) {
         if (!e.target.validity.valid) {
             setErrMessageEmail(e.target.validationMessage);
@@ -25,6 +23,21 @@ export default function SigninPopup({ isSigninOpen, email, password, handleSignu
         }
         handlePwd(e.target.value);
     }
+    function onClickLogin(e) {
+        e.preventDefault();
+        mainApi.authorize({ email, password })
+            .then((data) => {
+                if (!data) {
+                    throw new Error("User Doesn't exist or wrong password.")
+                }
+                if (data.token) {
+                    handlePopupClose();
+                    handleLogin();
+                }
+            })
+            .catch((err) => console.log(err));
+    }
+
     const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" || email === "" || password === "" ? true : false);
     const buttonClass = disableButton ? "signin__button-diable signin__button-text-diable" : "signin__button signin__button-text";
 

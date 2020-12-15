@@ -1,15 +1,13 @@
 import './SignupPopup.css';
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { useState } from 'react';
+import { mainApi } from '../../utils/utils';
 
 export default function SignupPopup({ isSignupOpen, email, password, name, handleSigninOpen, handlePopupClose, handleConfirmOpen, handleEmail, handlePwd, handleName }) {
     const [errMessageEmail, setErrMessageEmail] = useState('');
     const [errMessagePwd, setErrMessagePwd] = useState('');
     const [errMessageName, setErrMessageName] = useState('');
-    function onClickSubmit() {
-        handlePopupClose();
-        handleConfirmOpen();
-    }
+
     function onChangeEmail(e) {
         if (!e.target.validity.valid) {
             setErrMessageEmail(e.target.validationMessage);
@@ -33,6 +31,15 @@ export default function SignupPopup({ isSignupOpen, email, password, name, handl
             setErrMessageName('');
         }
         handleName(e.target.value);
+    }
+    function onClickSubmit(e) {
+        e.preventDefault();
+        mainApi.register({ email, password, name })
+            .then((res) => {
+                handlePopupClose();
+                handleConfirmOpen();
+            })
+            .catch((err) => console.log(err));
     }
     const disableButton = (errMessageEmail !== "" || errMessagePwd !== "" || errMessageName !== "" || email === "" || password === "" || name === "" ? true : false);
     const buttonClass = disableButton ? "signup__button-diable signup__button-text-diable" : "signup__button signup__button-text";

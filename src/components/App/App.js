@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import SaveNews from '../SaveNews/SaveNews';
@@ -21,9 +21,10 @@ function App() {
   const [isSearchDone, setIsSearchDone] = useState(false);
   const [isMore, setIsMore] = useState(false);
   const [cards, setCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('user');
+  const [name, setName] = useState('');
   const [topic, setTopic] = useState('');
   const [currentUser, setCurretUser] = useState('user');
 
@@ -94,6 +95,22 @@ function App() {
         .catch((err) => console.log(err))
     }, 1200);
   }
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      mainApi.getUserInfo(token)
+        .then((data) => {
+          handleLogin();
+          setCurretUser(data);
+        })
+        .catch((err) => console.log(err));
+      mainApi.getSavedCard(token)
+        .then((data) => {
+          setSavedCards(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLogin])
   return (
     <CurrenUserContext.Provider value={currentUser}>
       <BrowserRouter>
@@ -101,7 +118,7 @@ function App() {
           <Route path="/saved-news">
             <section className="app">
               <NavPopup isOpen={isNavOpen} name={name} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} handleNavOpen={handleNavOpen} />
+              <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} />
             </section>
           </Route>
           <Route path="/">
