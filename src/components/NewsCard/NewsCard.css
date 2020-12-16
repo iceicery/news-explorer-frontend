@@ -1,7 +1,7 @@
 .newscard {
-  max-height: 576px;
   min-width: 224px;
   overflow: hidden;
+  border: solid blue;
   margin: 0;
   padding: 0 0 17px 0;
   display: flex;

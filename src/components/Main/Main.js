@@ -5,11 +5,11 @@ import SearchNews from "../SearchNews/SearchNews";
 import Preloader from "../Preloader/Preloader";
 import NotFound from "../NotFound/NotFound";
 
-export default function Main({ handleSigninOpen, isLogin, name, topic, isSearchDone, isFound, isLoading, cards, isMore, savedCards
-    , handleShowMore, handleSearch, handleSearchSubmit, handleLogout, handleNavOpen, handleSaveCards }) {
+export default function Main({ handleSigninOpen, isLogin, name, topic, isSearchDone, isFound, isLoading, cards, isMore, savedCards,
+    handleHindMore, handleShowMore, handleSearch, handleSearchSubmit, handleLogout, handleNavOpen, handleSaveCards }) {
     return (
         <section className="main">
-            <Header isLogin={isLogin} name={name} topic={topic} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            <Header isLogin={isLogin} name={name} topic={topic} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} handleHindMore={handleHindMore} />
             <Preloader isLoading={isLoading} />
             <NotFound isFound={isFound} />
             <SearchNews isLogin={isLogin} isSearchDone={isSearchDone} cards={cards} isMore={isMore} topic={topic} savedCards={savedCards} handleShowMore={handleShowMore} handleSaveCards={handleSaveCards} />

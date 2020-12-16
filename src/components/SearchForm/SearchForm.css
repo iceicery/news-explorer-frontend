@@ -44,6 +44,18 @@
 .search__input::-ms-input-placeholder {
   color: #b6bcbf;
 }
+
+.search__err {
+  position: absolute;
+  top: 45px;
+  left: 21px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+}
 .search__button {
   width: 168px;
   background: #2f71e5;
