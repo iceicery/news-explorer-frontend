@@ -78,6 +78,9 @@ function App() {
   function handleLogout() {
     setIsLogin(false);
   }
+  function handleSaveCards(card) {
+    setSavedCards(card);
+  }
   function handleSearchSubmit(topic) {
     setTimeout(() => {
       newsApi.requeireNews(topic)
@@ -106,7 +109,6 @@ function App() {
         .catch((err) => console.log(err));
       mainApi.getSavedCard(token)
         .then((data) => {
-          console.log(data);
           setSavedCards(data);
         })
         .catch((err) => console.log(err));
@@ -119,7 +121,7 @@ function App() {
           <Route path="/saved-news">
             <section className="app">
               <NavPopup isOpen={isNavOpen} name={name} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} />
+              <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleSaveCards={handleSaveCards} />
             </section>
           </Route>
           <Route path="/">
@@ -128,8 +130,8 @@ function App() {
               <SigninPopup isSigninOpen={isSigninOpen} email={email} password={password} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} handleEmail={handleEmail} handlePwd={handlePwd} />
               <SignupPopup isSignupOpen={isSignupOpen} email={email} password={password} name={name} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} handleEmail={handleEmail} handlePwd={handlePwd} handleName={handleName} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-              <Main isLogin={isLogin} name={name} topic={topic} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} isMore={isMore}
-                handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+              <Main isLogin={isLogin} name={name} topic={topic} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
+                handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             </section>
           </Route>
         </Switch>

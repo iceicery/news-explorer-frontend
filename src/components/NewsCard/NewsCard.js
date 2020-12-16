@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { mainApi } from '../../utils/utils';
 import './NewsCard.css';
 
-export default function NewsCard({ isLogin, isSavedPage, card, topic }) {
+export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards, handleSaveCards }) {
     const [isSave, setIsSave] = useState(false);
     const [cardId, setCardId] = useState('');
 
@@ -35,7 +35,8 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic }) {
             })
                 .then((data) => {
                     setIsSave(true);
-                    setCardId(data._id)
+                    setCardId(data._id);
+                    handleSaveCards([...savedCards, data])
                 })
                 .catch((err) => console.log(err))
         } else {
@@ -43,13 +44,27 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic }) {
                 token,
                 articlesId: cardId,
             })
-                .then((data) => setIsSave(false))
+                .then((data) => {
+                    setIsSave(false);
+                    const newSavedCards = savedCards.filter(c => c._id !== data._id);
+                    handleSaveCards(newSavedCards);
+                })
                 .catch((err) => console.log(err));
         }
     }
 
     function onClickDelete() {
-        console.log('test')
+        const token = localStorage.getItem('token');
+        mainApi.deleteSavedCard({
+            token,
+            articlesId: card._id,
+        })
+            .then((data) => {
+                console.log(savedCards);
+                const newSavedCards = savedCards.filter(c => c._id !== data._id);
+                handleSaveCards(newSavedCards);
+            })
+            .catch((err) => console.log(err));
     }
     const iconClass = isLogin ?
         (isSave ? "newscard__icon-blue" : "newscard__icon")
