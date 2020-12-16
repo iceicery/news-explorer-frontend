@@ -12,7 +12,7 @@ export default function Main({ handleSigninOpen, isLogin, name, topic, isSearchD
             <Header isLogin={isLogin} name={name} topic={topic} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             <Preloader isLoading={isLoading} />
             <NotFound isFound={isFound} />
-            <SearchNews isLogin={isLogin} isSearchDone={isSearchDone} cards={cards} isMore={isMore} handleShowMore={handleShowMore} />
+            <SearchNews isLogin={isLogin} isSearchDone={isSearchDone} cards={cards} isMore={isMore} topic={topic} handleShowMore={handleShowMore} />
             <About />
             <Footer />
         </section>

@@ -7,6 +7,7 @@ import { useContext } from "react";
 
 export default function SaveNews({ handleLogout, isLogin, savedCards, handleNavOpen }) {
     const currentUser = useContext(CurrenUserContext);
+    console.log(savedCards);
     return (
         <section>
             <SaveNewsHeader isLogin={isLogin} name={currentUser.name} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />

@@ -106,6 +106,7 @@ function App() {
         .catch((err) => console.log(err));
       mainApi.getSavedCard(token)
         .then((data) => {
+          console.log(data);
           setSavedCards(data);
         })
         .catch((err) => console.log(err));

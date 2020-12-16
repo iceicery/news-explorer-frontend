@@ -1,7 +1,7 @@
 import NewsCardList from "../NewsCardList/NewsCardList";
 import './SearchNews.css';
 
-export default function SearchNews({ isLogin, isSearchDone, isMore, handleShowMore, cards }) {
+export default function SearchNews({ isLogin, isSearchDone, isMore, topic, handleShowMore, cards }) {
     const searchClass = isSearchDone ? "searchnews" : "searchnews-hidden";
     const buttonClass = !isMore ? "searchnews__button" : "searchnews-hidden";
     function onClickButton() {
@@ -10,7 +10,7 @@ export default function SearchNews({ isLogin, isSearchDone, isMore, handleShowMo
     return (
         <section className={searchClass}>
             <h2 className="searchnews__title">Search results</h2>
-            <NewsCardList isLogin={isLogin} isSavedPage={false} cards={cards} isMore={isMore} />
+            <NewsCardList isLogin={isLogin} isSavedPage={false} topic={topic} cards={cards} isMore={isMore} />
             <button className={buttonClass} onClick={onClickButton}>Show more</button>
         </section>
     )

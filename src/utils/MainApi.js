@@ -57,7 +57,7 @@ export default class MainApi {
         })
             .then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     }
-    postSavedCard({ token, keyword, title, text, date, source, link, image, owner }) {
+    postSavedCard({ token, keyword, title, text, date, source, link, image }) {
         return fetch(`${this.url}/articles`, {
             method: "POST",
             headers: {
@@ -65,13 +65,13 @@ export default class MainApi {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                keyword, title, text, date, source, link, image, owner,
+                keyword, title, text, date, source, link, image,
             })
         })
             .then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
     }
 
-    deleteSavedCard(token, articlesId) {
+    deleteSavedCard({ token, articlesId }) {
         return fetch(`${this.url}/articles/${articlesId}`, {
             method: "DELETE",
             headers: {
