@@ -1,7 +1,6 @@
 .newscard {
   min-width: 224px;
   overflow: hidden;
-  border: solid blue;
   margin: 0;
   padding: 0 0 17px 0;
   display: flex;
@@ -129,6 +128,8 @@
   margin-top: 12px;
   margin-left: 6%;
   margin-right: 6%;
+  height: 60px;
+  overflow: hidden;
   font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -143,7 +144,7 @@
   margin-top: 16px;
   margin-left: 6%;
   margin-right: 6%;
-  max-height: 110px;
+  height: 110px;
   overflow: hidden;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -299,6 +300,8 @@
     margin-top: 10px;
     margin-left: 16px;
     margin-right: 16px;
+    height: 72px;
+    overflow: hidden;
     font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -313,7 +316,7 @@
     margin-top: 10px;
     margin-left: 16px;
     margin-right: 16px;
-    max-height: 88px;
+    height: 88px;
     overflow: hidden;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-style: normal;
@@ -469,6 +472,8 @@
     margin-top: 10px;
     margin-left: 16px;
     margin-right: 16px;
+    height: 48px;
+    overflow: hidden;
     font-family: "RobotoSlab", Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -483,7 +488,7 @@
     margin-top: 14px;
     margin-left: 16px;
     margin-right: 16px;
-    max-height: 88px;
+    height: 88px;
     overflow: hidden;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-style: normal;

@@ -14,9 +14,7 @@ export default function SearchForm({ topic, handleSearch, handleSearchSubmit, ha
     function onClickSubmit(e) {
         e.preventDefault();
         handleSearchSubmit(topic);
-        handleSearch("");
         handleHindMore();
-        console.log('click')
     }
     const diableButton = errMessage === "" && topic !== "" ? false : true;
     return (

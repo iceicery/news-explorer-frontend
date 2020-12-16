@@ -80,6 +80,7 @@ function App() {
   }
   function handleLogout() {
     setIsLogin(false);
+    setIsSearchDone(false);
   }
   function handleSaveCards(card) {
     setSavedCards(card);
@@ -112,11 +113,12 @@ function App() {
         .catch((err) => console.log(err));
       mainApi.getSavedCard(token)
         .then((data) => {
-          setSavedCards(data);
+          console.log(data.owner);
+          setSavedCards(data.filter((c) => c.owner === currentUser._id));
         })
         .catch((err) => console.log(err));
     }
-  }, [isLogin])
+  }, [currentUser._id, isLogin])
   return (
     <CurrenUserContext.Provider value={currentUser}>
       <BrowserRouter>

@@ -9,7 +9,7 @@ export default function SaveNews({ handleLogout, isLogin, savedCards, handleNavO
     const currentUser = useContext(CurrenUserContext);
     return (
         <section>
-            <SaveNewsHeader isLogin={isLogin} name={currentUser.name} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            <SaveNewsHeader isLogin={isLogin} name={currentUser.name} savedCards={savedCards} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             <NewsCardList isLogin={isLogin} isSavedPage={true} cards={savedCards} savedCards={savedCards} handleSaveCards={handleSaveCards} />
             <Footer />
         </section>

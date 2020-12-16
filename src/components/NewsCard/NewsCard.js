@@ -19,7 +19,6 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards
     const text = isSavedPage ? card.text : card.description;
     const source = isSavedPage ? card.source : card.source.name;
     const image = isSavedPage ? card.image : card.urlToImage;
-
     function onClickSave() {
         const token = localStorage.getItem('token');
         if (!isSave) {
@@ -28,7 +27,7 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards
                 keyword: topic,
                 title: card.title,
                 text: card.description,
-                date,
+                date: date,
                 source: card.source.name,
                 link: card.url,
                 image: card.urlToImage,
@@ -60,7 +59,6 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards
             articlesId: card._id,
         })
             .then((data) => {
-                console.log(savedCards);
                 const newSavedCards = savedCards.filter(c => c._id !== data._id);
                 handleSaveCards(newSavedCards);
             })
