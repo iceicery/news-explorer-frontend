@@ -113,8 +113,7 @@ function App() {
         .catch((err) => console.log(err));
       mainApi.getSavedCard(token)
         .then((data) => {
-          console.log(data.owner);
-          setSavedCards(data.filter((c) => c.owner === currentUser._id));
+          setSavedCards(data);
         })
         .catch((err) => console.log(err));
     }
