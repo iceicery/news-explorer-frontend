@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { CurrenUserContext } from '../../contexts/CurrentUserContext';
 import Navigation from '../Navigation/Navigation';
 import './SavedNewsHeader.css';
 
-export default function SaveNewsHeader({ isLogin, name, savedCards, handleLogout, handleNavOpen }) {
+export default function SaveNewsHeader({ isLogin, savedCards, handleLogout, handleNavOpen }) {
+    const currentUser = useContext(CurrenUserContext);
     const numberOfSave = savedCards.length;
     const keyword = []
     savedCards.map((card) => keyword.push(card.keyword));
@@ -20,9 +23,9 @@ export default function SaveNewsHeader({ isLogin, name, savedCards, handleLogout
 
     return (
         <section className="savedHeader">
-            <Navigation isLogin={isLogin} isLight={true} name={name} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            <Navigation isLogin={isLogin} isLight={true} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             <p className="savedHeader__subtitle">Saved articles</p>
-            <h3 className="savedHeader__title">{name}, you have {numberOfSave} saved articles</h3>
+            <h3 className="savedHeader__title">{currentUser.name}, you have {numberOfSave} saved articles</h3>
             <div className="savedHeader__text-box"><p className="savedHeader__text">By keywords: <span className="savedHeader__text-bold">{keywordsText}</span></p></div>
         </section>
     )
