@@ -9,6 +9,7 @@ import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
 import NavPopup from '../NavPopup/NavPopup';
 import { newsApi, mainApi } from '../../utils/utils';
 import { CurrenUserContext } from '../../contexts/CurrentUserContext';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const [isSigninOpen, setSigninOpen] = useState(false);
@@ -124,11 +125,11 @@ function App() {
         <Switch>
           <Route path="/saved-news">
             <section className="app">
-              <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <SaveNews handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleSaveCards={handleSaveCards} />
+              <ProtectedRoute Component={NavPopup} isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
+              <ProtectedRoute Component={SaveNews} handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleSaveCards={handleSaveCards} />
             </section>
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <section className="app">
               <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
               <SigninPopup isSigninOpen={isSigninOpen} email={email} password={password} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} handleEmail={handleEmail} handlePwd={handlePwd} />
