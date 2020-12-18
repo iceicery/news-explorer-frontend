@@ -5,7 +5,7 @@ import { mainApi } from '../../utils/utils';
 import { useFormWithValidation } from '../../utils/FormValidation';
 
 
-export default function SignupPopup({ isSignupOpen, email, password, name, handleSigninOpen, handlePopupClose, handleConfirmOpen, handleEmail, handlePwd, handleName }) {
+export default function SignupPopup({ isSignupOpen, handleSigninOpen, handlePopupClose, handleConfirmOpen, }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const [errMessage, setErrMessage] = useState('');
 
