@@ -76,8 +76,9 @@ function App() {
     setTimeout(() => {
       newsApi.requeireNews(topic)
         .then((data) => {
-          if (!data) {
+          if (data.totalResults === 0) {
             setIsFound(false);
+            return;
           }
           setIsLoading(true);
           setTimeout(() => {

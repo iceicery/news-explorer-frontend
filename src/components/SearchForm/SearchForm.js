@@ -1,26 +1,23 @@
-import { useState } from "react";
+import { useFormWithValidation } from "../../utils/FormValidation";
 import "./SearchForm.css";
 
-export default function SearchForm({ topic, handleSearch, handleSearchSubmit, handleHindMore }) {
-    const [errMessage, setErrMessage] = useState('');
+export default function SearchForm({ handleSearch, handleSearchSubmit, handleHindMore }) {
+    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     function onChangeTopic(e) {
-        if (!e.target.validity.valid) {
-            setErrMessage(e.target.validationMessage)
-        } else {
-            setErrMessage("");
-        }
-        handleSearch(e.target.value);
+        handleChange(e)
     }
     function onClickSubmit(e) {
         e.preventDefault();
-        handleSearchSubmit(topic);
+        handleSearchSubmit(values.topic);
+        handleSearch(values.topic);
         handleHindMore();
+        resetForm();
     }
-    const diableButton = errMessage === "" && topic !== "" ? false : true;
+    const diableButton = isValid ? false : true;
     return (
         <form className="search">
-            <input className="search__input" placeholder="Enter topic" onChange={onChangeTopic} required />
-            <span className="search__err">{errMessage}</span>
+            <input className="search__input" placeholder="Enter topic" onChange={onChangeTopic} name="topic" required />
+            <span className="search__err">{errors.topic}</span>
             <button className="search__button" disabled={diableButton} onClick={onClickSubmit}>Search</button>
         </form>
     )
