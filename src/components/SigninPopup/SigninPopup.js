@@ -1,10 +1,9 @@
 import './SigninPopup.css';
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { useState } from 'react';
-import { mainApi } from '../../utils/utils';
 import { useFormWithValidation } from '../../utils/FormValidation';
 
-export default function SigninPopup({ isSigninOpen, handleSignupOpen, handlePopupClose, handleLogin }) {
+export default function SigninPopup({ isSigninOpen, errMsg, handleLoginSubmit, handleSignupOpen, handlePopupClose, handleLogin }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const [errMessage, setErrMessage] = useState('');
     function onChange(event) {
@@ -13,20 +12,8 @@ export default function SigninPopup({ isSigninOpen, handleSignupOpen, handlePopu
     }
     function onClickLogin(e) {
         e.preventDefault();
-        mainApi.authorize({ email: values.email, password: values.password })
-            .then((data) => {
-                if (!data) {
-                    throw new Error("User Doesn't exist or wrong password.")
-                }
-                if (data.token) {
-                    handlePopupClose();
-                    handleLogin();
-                    resetForm();
-                }
-            })
-            .catch((err) => {
-                setErrMessage(err);
-            });
+        handleLoginSubmit({ email: values.email, password: values.password });
+        resetForm();
     };
     const disableButton = isValid && errMessage === "" ? false : true;
     const buttonClass = disableButton ? "signin__button-diable signin__button-text-diable" : "signin__button signin__button-text";
@@ -38,7 +25,7 @@ export default function SigninPopup({ isSigninOpen, handleSignupOpen, handlePopu
             <p className="signin__input-title">Password</p>
             <input className="signin__input" required name="password" type="password" placeholder="Enter password" onChange={onChange} value={values.password || ''} />
             <span className="signin__input-err">{errors.password}</span>
-            <span className="signin__input-err">{errMessage}</span>
+            <span className="signin__input-err">{errMsg}</span>
             <button className={buttonClass} onClick={onClickLogin} type="button" disabled={disableButton}>Sign in</button>
         </PopupWithForm >
     )

@@ -25,7 +25,8 @@ function App() {
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
   const [topic, setTopic] = useState('');
-  const [currentUser, setCurretUser] = useState('user');
+  const [currentUser, setCurretUser] = useState('');
+  const [errMsg, setErrMsg] = useState('');
 
   function handleShowMore() {
     setIsMore(true);
@@ -71,6 +72,21 @@ function App() {
   }
   function handleSaveCards(card) {
     setSavedCards(card);
+  }
+  function handleLoginSubmit({ email, password }) {
+    mainApi.authorize({ email, password })
+      .then((data) => {
+        if (!data) {
+          throw new Error("User Doesn't exist or wrong password.")
+        }
+        if (data.token) {
+          handleSigninClose();
+          handleLogin();
+        }
+      })
+      .catch((err) => {
+        setErrMsg(err);
+      });
   }
   function handleSearchSubmit(topic) {
     setIsFound(true);
@@ -131,7 +147,7 @@ function App() {
           <Route exact path="/">
             <section className="app">
               <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <SigninPopup isSigninOpen={isSigninOpen} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} />
+              <SigninPopup isSigninOpen={isSigninOpen} errMsg={errMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} />
               <SignupPopup isSignupOpen={isSignupOpen} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
               <Main isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
