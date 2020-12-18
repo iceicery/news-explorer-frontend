@@ -9,10 +9,15 @@ export default function SaveNewsHeader({ isLogin, savedCards, handleLogout, hand
     const keyword = []
     savedCards.map((card) => keyword.push(card.keyword));
     const keywordUniqe = Array.from(new Set(keyword));
+    const keywordUniqeCount = [];
+    keywordUniqe.map((item) =>
+        keywordUniqeCount.push({ keyword: item, number: keyword.filter(i => i === item).length })
+    )
+    const keywordSorted = keywordUniqeCount.sort((a, b) => b.number - a.number);
     const numberOfKeywords = keywordUniqe.length;
     const getkeywordsText = () => {
         if (numberOfKeywords > 2) {
-            return `${keywordUniqe[0]}, ${keywordUniqe[1]}, and ${numberOfKeywords - 2} other`
+            return `${keywordSorted[0].keyword}, ${keywordSorted[1].keyword}, and ${numberOfKeywords - 2} other`
         } else if (numberOfKeywords === 2) {
             return `${keywordUniqe[0]}, ${keywordUniqe[1]}`
         } else {
