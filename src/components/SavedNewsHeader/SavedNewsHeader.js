@@ -19,7 +19,7 @@ export default function SaveNewsHeader({ isLogin, savedCards, handleLogout, hand
         if (numberOfKeywords > 2) {
             return `${keywordSorted[0].keyword}, ${keywordSorted[1].keyword}, and ${numberOfKeywords - 2} other`
         } else if (numberOfKeywords === 2) {
-            return `${keywordUniqe[0]}, ${keywordUniqe[1]}`
+            return `${keywordSorted[0].keyword}, ${keywordSorted[1].keyword}`
         } else {
             return `${keywordUniqe[0]}`
         }

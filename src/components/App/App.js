@@ -68,7 +68,6 @@ function App() {
   }
   function handleLogout() {
     setIsLogin(false);
-    setIsSearchDone(false);
   }
   function handleSaveCards(card) {
     setSavedCards(card);
