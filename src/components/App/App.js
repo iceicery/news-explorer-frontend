@@ -73,6 +73,19 @@ function App() {
   function handleSaveCards(card) {
     setSavedCards(card);
   }
+  function handleSignupSubmit({ email, password, name }) {
+    mainApi.register({ email, password, name })
+      .then((res) => {
+        if (res.message) {
+          throw new Error(res.message);
+        }
+        handleSignupClose();
+        handleConfirmOpen();
+      })
+      .catch((err) => {
+        setErrMsg(err.message);
+      });
+  }
   function handleLoginSubmit({ email, password }) {
     mainApi.authorize({ email, password })
       .then((data) => {
@@ -148,7 +161,7 @@ function App() {
             <section className="app">
               <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
               <SigninPopup isSigninOpen={isSigninOpen} errMsg={errMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} />
-              <SignupPopup isSignupOpen={isSignupOpen} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} />
+              <SignupPopup isSignupOpen={isSignupOpen} errMsg={errMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
               <Main isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
                 handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />

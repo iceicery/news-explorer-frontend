@@ -1,11 +1,10 @@
 import './SignupPopup.css';
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { useState } from 'react';
-import { mainApi } from '../../utils/utils';
 import { useFormWithValidation } from '../../utils/FormValidation';
 
 
-export default function SignupPopup({ isSignupOpen, handleSigninOpen, handlePopupClose, handleConfirmOpen, }) {
+export default function SignupPopup({ isSignupOpen, errMsg, handleSignupSubmit, handleSigninOpen, handlePopupClose, handleConfirmOpen, }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const [errMessage, setErrMessage] = useState('');
 
@@ -16,18 +15,8 @@ export default function SignupPopup({ isSignupOpen, handleSigninOpen, handlePopu
 
     function onClickSubmit(e) {
         e.preventDefault();
-        mainApi.register({ email: values.email, password: values.password, name: values.name })
-            .then((res) => {
-                if (res.message) {
-                    throw new Error(res.message);
-                }
-                handlePopupClose();
-                handleConfirmOpen();
-                resetForm();
-            })
-            .catch((err) => {
-                setErrMessage(err.message);
-            });
+        handleSignupSubmit({ email: values.email, password: values.password, name: values.name });
+        resetForm();
     }
     const disableButton = isValid && errMessage === "" ? false : true;
     const buttonClass = disableButton ? "signup__button-diable signup__button-text-diable" : "signup__button signup__button-text";
@@ -42,7 +31,7 @@ export default function SignupPopup({ isSignupOpen, handleSigninOpen, handlePopu
             <p className="signup__input-title">Username</p>
             <input className="signup__input" required name="name" placeholder="Enter your username" value={values.name || ""} minLength="2" maxLength="30" onChange={onChange} />
             <span className="signup__input-err">{errors.name}</span>
-            <span className="signup__input-err">{errMessage}</span>
+            <span className="signup__input-err">{errMsg}</span>
             <button className={buttonClass} onClick={onClickSubmit} type="button" disabled={disableButton}>Sign up</button>
         </PopupWithForm>
     )
