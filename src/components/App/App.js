@@ -21,6 +21,7 @@ function App() {
   const [isFound, setIsFound] = useState(true);
   const [isSearchDone, setIsSearchDone] = useState(false);
   const [isMore, setIsMore] = useState(false);
+  const [isServerErr, setIsServerErr] = useState(false);
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
   const [topic, setTopic] = useState('');
@@ -73,23 +74,35 @@ function App() {
     setSavedCards(card);
   }
   function handleSearchSubmit(topic) {
-    setTimeout(() => {
-      newsApi.requeireNews(topic)
-        .then((data) => {
-          if (data.totalResults === 0) {
-            setIsFound(false);
-            return;
-          }
-          setIsLoading(true);
+    setIsFound(true);
+    setIsServerErr(false);
+    newsApi.requeireNews(topic)
+      .then((data) => {
+        setIsLoading(true);
+        if (data.err) {
+          setIsLoading(false);
+          setIsServerErr(true);
+          return;
+        }
+        if (data.totalResults === 0) {
           setTimeout(() => {
             setIsLoading(false);
-            setIsSearchDone(true);
-            setCards(data.articles.slice(0, 6));
-          }, 1000);
-        })
-        .catch((err) => console.log(err))
-    }, 1200);
+            setIsFound(false);
+          }, 1000)
+          return;
+        }
+        setTimeout(() => {
+          setIsLoading(false);
+          setIsSearchDone(true);
+          setCards(data.articles.slice(0, 6));
+        }, 1000);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setIsServerErr(true);
+      })
   }
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -122,7 +135,7 @@ function App() {
               <SigninPopup isSigninOpen={isSigninOpen} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} />
               <SignupPopup isSignupOpen={isSignupOpen} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-              <Main isLogin={isLogin} topic={topic} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
+              <Main isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
                 handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             </section>
           </Route>
