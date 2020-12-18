@@ -16,8 +16,11 @@ export default function SaveNewsHeader({ isLogin, savedCards, handleLogout, hand
     const keywordSorted = keywordUniqeCount.sort((a, b) => b.number - a.number);
     const numberOfKeywords = keywordUniqe.length;
     const getkeywordsText = () => {
-        if (numberOfKeywords > 2) {
+        if (numberOfKeywords > 3) {
             return `${keywordSorted[0].keyword}, ${keywordSorted[1].keyword}, and ${numberOfKeywords - 2} other`
+        }
+        else if (numberOfKeywords === 3) {
+            return `${keywordSorted[0].keyword}, ${keywordSorted[1].keyword}, ${keywordSorted[2].keyword}`
         } else if (numberOfKeywords === 2) {
             return `${keywordSorted[0].keyword}, ${keywordSorted[1].keyword}`
         } else {
