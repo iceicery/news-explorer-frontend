@@ -5,6 +5,8 @@ import "./SearchForm.css";
 export default function SearchForm({ handleSearch, handleSearchSubmit, handleHindMore }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const [errMessage, setErrMessgae] = useState('')
+    console.log(isValid);
+    console.log(values);
     function onChangeTopic(e) {
         handleChange(e);
         setErrMessgae('');
@@ -23,7 +25,7 @@ export default function SearchForm({ handleSearch, handleSearchSubmit, handleHin
 
     return (
         <form className="search">
-            <input className="search__input" placeholder="Enter topic" onChange={onChangeTopic} name="topic" required />
+            <input className="search__input" placeholder="Enter topic" onChange={onChangeTopic} name="topic" value={values.topic || ""} required />
             <span className="search__err">{errors.topic}</span>
             <button className="search__button" onClick={onClickSubmit}>Search</button>
             <span className="search__err-click">{errMessage}</span>

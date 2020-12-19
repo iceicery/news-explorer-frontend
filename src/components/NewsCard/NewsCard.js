@@ -59,7 +59,10 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards
         <li className="newscard">
             {isSavedPage ?
                 <div className="newscard__icon-trash" onClick={onClickDelete}></div> :
-                <div className={iconClass} onClick={onClickSave}></div>
+                isLogin ?
+                    <div className={iconClass} onClick={onClickSave}></div> :
+                    <div className={iconClass}></div>
+
             }
             <p className={popupClass}>{popupText}</p>
             <p className={keywordClass}>{keyword}</p>
