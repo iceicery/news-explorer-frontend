@@ -131,6 +131,45 @@ function App() {
       })
   }
 
+  function handleApiSaveCard({ keyword, title, text, date, source, link, image, handleSaveState, handleCardId }) {
+    const token = localStorage.getItem('token');
+    return mainApi.postSavedCard({ token, keyword, title, text, date, source, link, image })
+      .then((data) => {
+        handleSaveState(true);
+        handleCardId(data._id);
+        handleSaveCards([...savedCards, data]);
+      })
+      .catch((err) => console.log(err))
+  }
+  function handleApiUnSaveCard({ articlesId, handleSaveState }) {
+    const token = localStorage.getItem('token');
+
+    return mainApi.deleteSavedCard({
+      token,
+      articlesId,
+    })
+      .then((data) => {
+        handleSaveState(false);
+        const newSavedCards = savedCards.filter(c => c._id !== data._id);
+        handleSaveCards(newSavedCards);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleDeleteCard({ articlesId }) {
+    const token = localStorage.getItem('token');
+    mainApi.deleteSavedCard({
+      token,
+      articlesId,
+    })
+      .then((data) => {
+        const newSavedCards = savedCards.filter(c => c._id !== data._id);
+        handleSaveCards(newSavedCards);
+      })
+      .catch((err) => console.log(err));
+  }
+
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -154,7 +193,7 @@ function App() {
           <Route path="/saved-news">
             <section className="app">
               <ProtectedRoute Component={NavPopup} isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <ProtectedRoute Component={SaveNews} handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleSaveCards={handleSaveCards} />
+              <ProtectedRoute Component={SaveNews} handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleSaveCards={handleSaveCards} handleDeleteCard={handleDeleteCard} />
             </section>
           </Route>
           <Route exact path="/">
@@ -164,7 +203,7 @@ function App() {
               <SignupPopup isSignupOpen={isSignupOpen} errMsg={errMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
               <Main isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
-                handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+                handleApiUnSaveCard={handleApiUnSaveCard} handleApiSaveCard={handleApiSaveCard} handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             </section>
           </Route>
         </Switch>

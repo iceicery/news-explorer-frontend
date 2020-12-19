@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { mainApi } from '../../utils/utils';
 import './NewsCard.css';
 
-export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards, handleSaveCards }) {
+export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards, handleSaveCards, handleDeleteCard, handleApiSaveCard, handleApiUnSaveCard }) {
     const [isSave, setIsSave] = useState(false);
     const [cardId, setCardId] = useState('');
-
     function formatDate() {
         const monthIndex = card.publishedAt.slice(5, 7);
         const month = ["January", "February", "March", "April", "May", "June",
@@ -19,10 +17,17 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards
     const text = isSavedPage ? card.text : card.description;
     const source = isSavedPage ? card.source : card.source.name;
     const image = isSavedPage ? card.image : card.urlToImage;
+    function handleSaveState(state) {
+        setIsSave(state);
+    }
+    function handleCardId(id) {
+        setCardId(id);
+    }
+
     function onClickSave() {
         const token = localStorage.getItem('token');
         if (!isSave) {
-            mainApi.postSavedCard({
+            handleApiSaveCard({
                 token,
                 keyword: topic,
                 title: card.title,
@@ -31,38 +36,17 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards
                 source: card.source.name,
                 link: card.url,
                 image: card.urlToImage,
+                handleSaveState,
+                handleCardId,
             })
-                .then((data) => {
-                    setIsSave(true);
-                    setCardId(data._id);
-                    handleSaveCards([...savedCards, data])
-                })
-                .catch((err) => console.log(err))
+
         } else {
-            mainApi.deleteSavedCard({
-                token,
-                articlesId: cardId,
-            })
-                .then((data) => {
-                    setIsSave(false);
-                    const newSavedCards = savedCards.filter(c => c._id !== data._id);
-                    handleSaveCards(newSavedCards);
-                })
-                .catch((err) => console.log(err));
+            handleApiUnSaveCard({ articlesId: cardId, handleSaveState })
         }
     }
 
     function onClickDelete() {
-        const token = localStorage.getItem('token');
-        mainApi.deleteSavedCard({
-            token,
-            articlesId: card._id,
-        })
-            .then((data) => {
-                const newSavedCards = savedCards.filter(c => c._id !== data._id);
-                handleSaveCards(newSavedCards);
-            })
-            .catch((err) => console.log(err));
+        handleDeleteCard({ articlesId: card._id });
     }
     const iconClass = isLogin ?
         (isSave ? "newscard__icon-blue" : "newscard__icon")
