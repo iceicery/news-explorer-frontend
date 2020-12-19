@@ -6,6 +6,7 @@ export default function SearchNews({ handleApiUnSaveCard, handleApiSaveCard, isL
     const buttonClass = !isMore ? "searchnews__button" : "searchnews-hidden";
     function onClickButton() {
         handleShowMore();
+        localStorage.setItem('isMoreLocal', JSON.stringify(true));
     }
     return (
         <section className={searchClass}>

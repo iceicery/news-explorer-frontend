@@ -104,30 +104,45 @@ function App() {
   function handleSearchSubmit(topic) {
     setIsFound(true);
     setIsServerErr(false);
+    localStorage.setItem('isMoreLocal', JSON.stringify(false));
     newsApi.requeireNews(topic)
       .then((data) => {
         setIsLoading(true);
         if (data.err) {
           setIsLoading(false);
           setIsServerErr(true);
+          setIsSearchDone(false);
+          localStorage.setItem('isServerErrLocal', JSON.stringify(true));
+          localStorage.setItem('isSearchDoneLocal', JSON.stringify(false));
           return;
         }
         if (data.totalResults === 0) {
           setTimeout(() => {
             setIsLoading(false);
+            setIsSearchDone(false);
             setIsFound(false);
+            localStorage.setItem('isFoundLocal', JSON.stringify(false));
+            localStorage.setItem('isSearchDoneLocal', JSON.stringify(false));
           }, 1000)
           return;
         }
         setTimeout(() => {
           setIsLoading(false);
           setIsSearchDone(true);
+          setIsFound(true);
+          setIsServerErr(false);
           setCards(data.articles.slice(0, 6));
+          localStorage.setItem('cards', JSON.stringify(data.articles.slice(0, 6)));
+          localStorage.setItem('topic', topic);
+          localStorage.setItem('isSearchDoneLocal', JSON.stringify(true));
+          localStorage.setItem('isServerErrLocal', JSON.stringify(false));
+          localStorage.setItem('isFoundLocal', JSON.stringify(true));
         }, 1000);
       })
       .catch((err) => {
         setIsLoading(false);
         setIsServerErr(true);
+        localStorage.setItem('isServerErrLocal', JSON.stringify(true));
       })
   }
 
@@ -171,7 +186,20 @@ function App() {
 
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
+    const localCards = JSON.parse(localStorage.getItem('cards'));
+    const isFoundLocal = localStorage.getItem('isFoundLocal') === "true";
+    const isServerErrLocal = localStorage.getItem('isServerErrLocal') === "true";
+    const isSearchDoneLocal = localStorage.getItem('isSearchDoneLocal') === "true";
+    const isMoreLocal = localStorage.getItem('isMoreLocal') === "true";
+    console.log(isMoreLocal);
+    setIsMore(isMoreLocal);
+    setIsFound(isFoundLocal);
+    setIsServerErr(isServerErrLocal);
+    setIsSearchDone(isSearchDoneLocal);
+    if (localCards) {
+      setCards(localCards);
+    }
     if (token) {
       mainApi.getUserInfo(token)
         .then((data) => {

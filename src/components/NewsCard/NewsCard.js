@@ -26,6 +26,7 @@ export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards
 
     function onClickSave() {
         const token = localStorage.getItem('token');
+        const topic = localStorage.getItem('topic');
         if (!isSave) {
             handleApiSaveCard({
                 token,
