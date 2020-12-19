@@ -4,9 +4,7 @@ import "./SearchForm.css";
 
 export default function SearchForm({ handleSearch, handleSearchSubmit, handleHindMore }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-    const [errMessage, setErrMessgae] = useState('')
-    console.log(isValid);
-    console.log(values);
+    const [errMessage, setErrMessgae] = useState('');
     function onChangeTopic(e) {
         handleChange(e);
         setErrMessgae('');

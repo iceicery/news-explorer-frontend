@@ -1,7 +1,7 @@
 import NewsCard from "../NewsCard/NewsCard";
 import './NewsCardList.css';
 
-export default function NewsCardList({ isLogin, isSavedPage, cards, topic, isMore, savedCards, handleSaveCards, handleDeleteCard, handleApiSaveCard, handleApiUnSaveCard }) {
+export default function NewsCardList({ isLogin, isSavedPage, cards, isMore, handleDeleteCard, handleApiSaveCard, handleApiUnSaveCard }) {
     return (
         <section className="newscardlist">
             <ul className="newscardlist__container">
@@ -9,13 +9,13 @@ export default function NewsCardList({ isLogin, isSavedPage, cards, topic, isMor
                     (
                         !isMore ?
                             cards.slice(0, 3).map((card, i) => {
-                                return <NewsCard key={i} isLogin={isLogin} isSavedPage={isSavedPage} card={card} topic={topic} savedCards={savedCards} handleSaveCards={handleSaveCards} handleApiSaveCard={handleApiSaveCard} handleApiUnSaveCard={handleApiUnSaveCard} />
+                                return <NewsCard key={i} isLogin={isLogin} isSavedPage={isSavedPage} card={card} handleApiSaveCard={handleApiSaveCard} handleApiUnSaveCard={handleApiUnSaveCard} />
                             }) : cards.map((card, i) => {
-                                return <NewsCard key={i} isLogin={isLogin} isSavedPage={isSavedPage} card={card} topic={topic} savedCards={savedCards} handleSaveCards={handleSaveCards} handleApiSaveCard={handleApiSaveCard} handleApiUnSaveCard={handleApiUnSaveCard}/>
+                                return <NewsCard key={i} isLogin={isLogin} isSavedPage={isSavedPage} card={card} handleApiSaveCard={handleApiSaveCard} handleApiUnSaveCard={handleApiUnSaveCard} />
                             })
                     ) : (
                         cards.map((card, i) => {
-                            return <NewsCard key={i} isLogin={isLogin} isSavedPage={isSavedPage} card={card} savedCards={savedCards} handleSaveCards={handleSaveCards} handleDeleteCard={handleDeleteCard} />
+                            return <NewsCard key={i} isLogin={isLogin} isSavedPage={isSavedPage} card={card} handleDeleteCard={handleDeleteCard} />
                         })
                     )
                 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './NewsCard.css';
 
-export default function NewsCard({ isLogin, isSavedPage, card, topic, savedCards, handleSaveCards, handleDeleteCard, handleApiSaveCard, handleApiUnSaveCard }) {
+export default function NewsCard({ isLogin, isSavedPage, card, handleDeleteCard, handleApiSaveCard, handleApiUnSaveCard }) {
     const [isSave, setIsSave] = useState(false);
     const [cardId, setCardId] = useState('');
     function formatDate() {

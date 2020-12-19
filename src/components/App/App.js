@@ -192,7 +192,6 @@ function App() {
     const isServerErrLocal = localStorage.getItem('isServerErrLocal') === "true";
     const isSearchDoneLocal = localStorage.getItem('isSearchDoneLocal') === "true";
     const isMoreLocal = localStorage.getItem('isMoreLocal') === "true";
-    console.log(isMoreLocal);
     setIsMore(isMoreLocal);
     setIsFound(isFoundLocal);
     setIsServerErr(isServerErrLocal);
@@ -221,7 +220,7 @@ function App() {
           <Route path="/saved-news">
             <section className="app">
               <ProtectedRoute Component={NavPopup} isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <ProtectedRoute Component={SaveNews} handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleSaveCards={handleSaveCards} handleDeleteCard={handleDeleteCard} />
+              <ProtectedRoute Component={SaveNews} handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleDeleteCard={handleDeleteCard} />
             </section>
           </Route>
           <Route exact path="/">
