@@ -73,6 +73,9 @@ function App() {
   function handleSaveCards(card) {
     setSavedCards(card);
   }
+  function handleErrMsg(err) {
+    setErrMsg(err);
+  }
   function handleSignupSubmit({ email, password, name }) {
     mainApi.register({ email, password, name })
       .then((res) => {
@@ -226,8 +229,8 @@ function App() {
           <Route exact path="/">
             <section className="app">
               <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <SigninPopup isSigninOpen={isSigninOpen} errMsg={errMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} />
-              <SignupPopup isSignupOpen={isSignupOpen} errMsg={errMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} />
+              <SigninPopup isSigninOpen={isSigninOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} />
+              <SignupPopup isSignupOpen={isSignupOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
               <Main isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
                 handleApiUnSaveCard={handleApiUnSaveCard} handleApiSaveCard={handleApiSaveCard} handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />

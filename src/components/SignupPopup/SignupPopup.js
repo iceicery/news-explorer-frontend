@@ -1,16 +1,14 @@
 import './SignupPopup.css';
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
-import { useState } from 'react';
 import { useFormWithValidation } from '../../utils/FormValidation';
 
 
-export default function SignupPopup({ isSignupOpen, errMsg, handleSignupSubmit, handleSigninOpen, handlePopupClose, handleConfirmOpen, }) {
+export default function SignupPopup({ isSignupOpen, errMsg, handleErrMsg, handleSignupSubmit, handleSigninOpen, handlePopupClose }) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
-    const [errMessage, setErrMessage] = useState('');
 
     function onChange(e) {
         handleChange(e);
-        setErrMessage('');
+        handleErrMsg('');
     }
 
     function onClickSubmit(e) {
@@ -18,10 +16,10 @@ export default function SignupPopup({ isSignupOpen, errMsg, handleSignupSubmit, 
         handleSignupSubmit({ email: values.email, password: values.password, name: values.name });
         resetForm();
     }
-    const disableButton = isValid && errMessage === "" ? false : true;
+    const disableButton = isValid && errMsg === "" ? false : true;
     const buttonClass = disableButton ? "signup__button-diable signup__button-text-diable" : "signup__button signup__button-text";
     return (
-        <PopupWithForm isOpen={isSignupOpen} handleOpen={handleSigninOpen} handlePopupClose={handlePopupClose} withForm={true} title="Sign up" link="Sign in">
+        <PopupWithForm isOpen={isSignupOpen} handleErrMsg={handleErrMsg} handleOpen={handleSigninOpen} handlePopupClose={handlePopupClose} withForm={true} title="Sign up" link="Sign in">
             <p className="signup__input-title">Email</p>
             <input className="signup__input" required name="email" type="email" placeholder="Enter email" value={values.email || ""} onChange={onChange} />
             <span className="signup__input-err">{errors.email}</span>
