@@ -25,7 +25,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
   const [topic, setTopic] = useState('');
-  const [currentUser, setCurretUser] = useState('');
+  const [currentUser, setCurretUser] = useState({});
   const [errMsg, setErrMsg] = useState('');
 
   function handleShowMore() {
