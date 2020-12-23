@@ -162,6 +162,7 @@ function App() {
         setIsLoading(false);
         setIsServerErr(true);
         localStorage.setItem('isServerErrLocal', JSON.stringify(true));
+        setDisable(false);
       })
   }
 
