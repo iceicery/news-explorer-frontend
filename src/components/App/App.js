@@ -27,6 +27,7 @@ function App() {
   const [topic, setTopic] = useState('');
   const [currentUser, setCurretUser] = useState({});
   const [errMsg, setErrMsg] = useState('');
+  const [disable, setDisable] = useState(false);
 
   function handleShowMore() {
     setIsMore(true);
@@ -105,6 +106,7 @@ function App() {
       });
   }
   function handleSearchSubmit(topic) {
+    setDisable(true);
     setIsFound(true);
     setIsServerErr(false);
     localStorage.setItem('isMoreLocal', JSON.stringify(false));
@@ -117,6 +119,7 @@ function App() {
           setIsSearchDone(false);
           localStorage.setItem('isServerErrLocal', JSON.stringify(true));
           localStorage.setItem('isSearchDoneLocal', JSON.stringify(false));
+          setDisable(false);
           return;
         }
         if (data.totalResults === 0) {
@@ -126,6 +129,7 @@ function App() {
             setIsFound(false);
             localStorage.setItem('isFoundLocal', JSON.stringify(false));
             localStorage.setItem('isSearchDoneLocal', JSON.stringify(false));
+            setDisable(false);
           }, 1000)
           return;
         }
@@ -140,6 +144,7 @@ function App() {
           localStorage.setItem('isSearchDoneLocal', JSON.stringify(true));
           localStorage.setItem('isServerErrLocal', JSON.stringify(false));
           localStorage.setItem('isFoundLocal', JSON.stringify(true));
+          setDisable(false);
         }, 1000);
       })
       .catch((err) => {
@@ -226,23 +231,13 @@ function App() {
               <ProtectedRoute Component={SaveNews} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleDeleteCard={handleDeleteCard} />
             </section>
           </Route>
-          <Route path="/signin">
-            <section className="app">
-              <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <SigninPopup isSigninOpen={isSigninOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} />
-              <SignupPopup isSignupOpen={isSignupOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} />
-              <ConfirmPopup isConfirmOpen={isConfirmOpen} handleErrMsg={handleErrMsg} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-              <Main isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
-                handleApiUnSaveCard={handleApiUnSaveCard} handleApiSaveCard={handleApiSaveCard} handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
-            </section>
-          </Route>
           <Route exact path="/">
             <section className="app">
               <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
               <SigninPopup isSigninOpen={isSigninOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} />
               <SignupPopup isSignupOpen={isSignupOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handleErrMsg={handleErrMsg} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-              <Main isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
+              <Main disable={disable} isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
                 handleApiUnSaveCard={handleApiUnSaveCard} handleApiSaveCard={handleApiSaveCard} handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
             </section>
           </Route>

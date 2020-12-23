@@ -19,7 +19,7 @@ export const newsApi = new NewsApi({
     apiKey: APIKEY,
     from: FROM_FORMAT,
     to: TO_FORMAT,
-    pageSixe: PAGESIZE,
+    pageSize: PAGESIZE,
 })
 
 export const mainApi = new MainApi(MAIN_URL);
