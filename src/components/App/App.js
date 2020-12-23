@@ -78,32 +78,43 @@ function App() {
     setErrMsg(err);
   }
   function handleSignupSubmit({ email, password, name }) {
+    setDisable(true);
     mainApi.register({ email, password, name })
       .then((res) => {
         if (res.message) {
+          setDisable(false);
           throw new Error(res.message);
         }
         handleSignupClose();
         handleConfirmOpen();
+        setDisable(false);
       })
       .catch((err) => {
         setErrMsg(err.message);
+        setDisable(false);
       });
+    setDisable(false);
   }
   function handleLoginSubmit({ email, password }) {
+    setDisable(true);
     mainApi.authorize({ email, password })
       .then((data) => {
+        setDisable(true);
         if (!data) {
+          setDisable(false);
           throw new Error("User Doesn't exist or wrong password.")
         }
         if (data.token) {
           handleSigninClose();
           handleLogin();
+          setDisable(false);
         }
       })
       .catch((err) => {
         setErrMsg(err);
+        setDisable(false);
       });
+    setDisable(false);
   }
   function handleSearchSubmit(topic) {
     setDisable(true);
@@ -234,8 +245,8 @@ function App() {
           <Route exact path="/">
             <section className="app">
               <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-              <SigninPopup isSigninOpen={isSigninOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} />
-              <SignupPopup isSignupOpen={isSignupOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} />
+              <SigninPopup disable={disable} isSigninOpen={isSigninOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} />
+              <SignupPopup disable={disable} isSignupOpen={isSignupOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} />
               <ConfirmPopup isConfirmOpen={isConfirmOpen} handleErrMsg={handleErrMsg} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
               <Main disable={disable} isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
                 handleApiUnSaveCard={handleApiUnSaveCard} handleApiSaveCard={handleApiSaveCard} handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
