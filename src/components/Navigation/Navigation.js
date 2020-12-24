@@ -2,8 +2,11 @@ import "./Navigation.css";
 import logoutIcon from '../../images/logout.png';
 import logoutIconLight from '../../images/logout-light.png';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CurrenUserContext } from "../../contexts/CurrentUserContext";
 
-export default function Navigation({ isLight, isLogin, name, handleSigninOpen, handleLogout, handleNavOpen }) {
+export default function Navigation({ isLight, isLogin, handleSigninOpen, handleLogout, handleNavOpen }) {
+    const currentUser = useContext(CurrenUserContext);
     const navClass = isLight ? "nav nav__light" : "nav";
     const titleClass = isLight ? "nav__title nav__login" : "nav__title";
     const placeClass = isLight ? "nav__place nav__login" : "nav__place";
@@ -17,6 +20,7 @@ export default function Navigation({ isLight, isLogin, name, handleSigninOpen, h
 
     function onClickLogout() {
         handleLogout();
+        localStorage.removeItem('token');
     }
     function onClickNavOpen() {
         handleNavOpen();
@@ -39,7 +43,7 @@ export default function Navigation({ isLight, isLogin, name, handleSigninOpen, h
                         : <p className={placeClass}>Home</p>}
                     {isLogin ?
                         <div className={signClass}>
-                            <p className="nav__login-text">{name}</p>
+                            <p className="nav__login-text">{currentUser.name}</p>
                             <Link to="/" className="nav__link"><img src={logoutImg} alt="logout icon" className="nav__icon" onClick={onClickLogout} /></Link>
                         </div> :
                         <button className={signClass} onClick={onClickSignin}>Sign In</button>

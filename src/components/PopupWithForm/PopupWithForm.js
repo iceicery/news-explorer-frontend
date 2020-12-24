@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import './PopupWithForm.css';
 
-export default function PopupWithForm({ isOpen, handleOpen, handlePopupClose, withForm, title, children, link }) {
+export default function PopupWithForm({ isOpen, handleErrMsg, handleOpen, handlePopupClose, withForm, title, children, link }) {
     const text = withForm ? "or " : "";
     const linkClass = withForm ? "popup__text" : "popup__text-left";
     const overlayClass = isOpen ? "popup-overlay" : "popup-hidden";
@@ -27,6 +27,7 @@ export default function PopupWithForm({ isOpen, handleOpen, handlePopupClose, wi
     function onClickOpen() {
         handlePopupClose();
         handleOpen();
+        handleErrMsg('');
     }
     return (
         <>

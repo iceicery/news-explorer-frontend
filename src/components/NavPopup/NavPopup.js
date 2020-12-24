@@ -1,8 +1,10 @@
 import "./NavPopup.css";
 import { Link } from "react-router-dom";
-import { useCallback, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import logoutIconLight from '../../images/logout-light.png';
-export default function NavPopup({ isOpen, isLogin, name, handleSigninOpen, handlePopupClose, handleLogout }) {
+import { CurrenUserContext } from "../../contexts/CurrentUserContext";
+export default function NavPopup({ isOpen, isLogin, handleSigninOpen, handlePopupClose, handleLogout }) {
+    const currentUser = useContext(CurrenUserContext);
     function onClickSignin() {
         handlePopupClose();
         handleSigninOpen();
@@ -12,6 +14,7 @@ export default function NavPopup({ isOpen, isLogin, name, handleSigninOpen, hand
     }
     function onClickLogout() {
         handleLogout();
+        localStorage.removeItem('token');
     }
 
     const escFunction = useCallback((event) => {
@@ -50,7 +53,7 @@ export default function NavPopup({ isOpen, isLogin, name, handleSigninOpen, hand
                     }
                     {isLogin ?
                         <div className="navpopup__button">
-                            <p className="nav__login-text">{name}</p>
+                            <p className="nav__login-text">{currentUser.name}</p>
                             <Link to="/" className="navpopup__link" onClick={onClickClose}><img src={logoutIconLight} alt="logout icon" className="navpopup__icon" onClick={onClickLogout} /></Link>
                         </div> :
                         <button className="navpopup__button" onClick={onClickSignin}>Sign In</button>

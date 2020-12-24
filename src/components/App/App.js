@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import SaveNews from '../SaveNews/SaveNews';
@@ -7,6 +7,9 @@ import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
 import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
 import NavPopup from '../NavPopup/NavPopup';
+import { newsApi, mainApi } from '../../utils/utils';
+import { CurrenUserContext } from '../../contexts/CurrentUserContext';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const [isSigninOpen, setSigninOpen] = useState(false);
@@ -14,19 +17,27 @@ function App() {
   const [isConfirmOpen, setConfirmOpen] = useState(false);
   const [isNavOpen, setNavOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('user');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFound, setIsFound] = useState(true);
+  const [isSearchDone, setIsSearchDone] = useState(false);
+  const [isMore, setIsMore] = useState(false);
+  const [isServerErr, setIsServerErr] = useState(false);
+  const [cards, setCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
+  const [topic, setTopic] = useState('');
+  const [currentUser, setCurretUser] = useState({});
+  const [errMsg, setErrMsg] = useState('');
+  const [disable, setDisable] = useState(false);
 
-  function handleName(name) {
-    setName(name);
+  function handleShowMore() {
+    setIsMore(true);
   }
-  function handleEmail(email) {
-    setEmail(email);
+  function handleHindMore() {
+    setIsMore(false);
   }
 
-  function handlePwd(password) {
-    setPassword(password);
+  function handleSearch(topic) {
+    setTopic(topic)
   }
 
   function handleSigninOpen() {
@@ -60,28 +71,191 @@ function App() {
   function handleLogout() {
     setIsLogin(false);
   }
+  function handleSaveCards(card) {
+    setSavedCards(card);
+  }
+  function handleErrMsg(err) {
+    setErrMsg(err);
+  }
+  function handleSignupSubmit({ email, password, name }) {
+    setDisable(true);
+    mainApi.register({ email, password, name })
+      .then((res) => {
+        if (res.message) {
+          setDisable(false);
+          throw new Error(res.message);
+        }
+        handleSignupClose();
+        handleConfirmOpen();
+        setDisable(false);
+      })
+      .catch((err) => {
+        setErrMsg(err.message);
+        setDisable(false);
+      });
+    setDisable(false);
+  }
+  function handleLoginSubmit({ email, password }) {
+    setDisable(true);
+    mainApi.authorize({ email, password })
+      .then((data) => {
+        setDisable(true);
+        if (!data) {
+          setDisable(false);
+          throw new Error("User Doesn't exist or wrong password.")
+        }
+        if (data.token) {
+          handleSigninClose();
+          handleLogin();
+          setDisable(false);
+        }
+      })
+      .catch((err) => {
+        setErrMsg(err);
+        setDisable(false);
+      });
+    setDisable(false);
+  }
+  function handleSearchSubmit(topic) {
+    setDisable(true);
+    setIsFound(true);
+    setIsServerErr(false);
+    localStorage.setItem('isMoreLocal', JSON.stringify(false));
+    newsApi.requeireNews(topic)
+      .then((data) => {
+        setIsLoading(true);
+        if (data.err) {
+          setIsLoading(false);
+          setIsServerErr(true);
+          setIsSearchDone(false);
+          localStorage.setItem('isServerErrLocal', JSON.stringify(true));
+          localStorage.setItem('isSearchDoneLocal', JSON.stringify(false));
+          setDisable(false);
+          return;
+        }
+        if (data.totalResults === 0) {
+          setTimeout(() => {
+            setIsLoading(false);
+            setIsSearchDone(false);
+            setIsFound(false);
+            localStorage.setItem('isFoundLocal', JSON.stringify(false));
+            localStorage.setItem('isSearchDoneLocal', JSON.stringify(false));
+            setDisable(false);
+          }, 1000)
+          return;
+        }
+        setTimeout(() => {
+          setIsLoading(false);
+          setIsSearchDone(true);
+          setIsFound(true);
+          setIsServerErr(false);
+          setCards(data.articles.slice(0, 6));
+          localStorage.setItem('cards', JSON.stringify(data.articles.slice(0, 6)));
+          localStorage.setItem('topic', topic);
+          localStorage.setItem('isSearchDoneLocal', JSON.stringify(true));
+          localStorage.setItem('isServerErrLocal', JSON.stringify(false));
+          localStorage.setItem('isFoundLocal', JSON.stringify(true));
+          setDisable(false);
+        }, 1000);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setIsServerErr(true);
+        localStorage.setItem('isServerErrLocal', JSON.stringify(true));
+        setDisable(false);
+      })
+  }
 
+  function handleApiSaveCard({ keyword, title, text, date, source, link, image, handleSaveState, handleCardId }) {
+    const token = localStorage.getItem('token');
+    return mainApi.postSavedCard({ token, keyword, title, text, date, source, link, image })
+      .then((data) => {
+        handleSaveState(true);
+        handleCardId(data._id);
+        handleSaveCards([...savedCards, data]);
+      })
+      .catch((err) => console.log(err))
+  }
+  function handleApiUnSaveCard({ articlesId, handleSaveState }) {
+    const token = localStorage.getItem('token');
+
+    return mainApi.deleteSavedCard({
+      token,
+      articlesId,
+    })
+      .then((data) => {
+        handleSaveState(false);
+        const newSavedCards = savedCards.filter(c => c._id !== data._id);
+        handleSaveCards(newSavedCards);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleDeleteCard({ articlesId }) {
+    const token = localStorage.getItem('token');
+    mainApi.deleteSavedCard({
+      token,
+      articlesId,
+    })
+      .then((data) => {
+        const newSavedCards = savedCards.filter(c => c._id !== data._id);
+        handleSaveCards(newSavedCards);
+      })
+      .catch((err) => console.log(err));
+  }
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const localCards = JSON.parse(localStorage.getItem('cards'));
+    const isFoundLocal = localStorage.getItem('isFoundLocal') === "true";
+    const isServerErrLocal = localStorage.getItem('isServerErrLocal') === "true";
+    const isSearchDoneLocal = localStorage.getItem('isSearchDoneLocal') === "true";
+    const isMoreLocal = localStorage.getItem('isMoreLocal') === "true";
+    setIsMore(isMoreLocal);
+    setIsFound(isFoundLocal);
+    setIsServerErr(isServerErrLocal);
+    setIsSearchDone(isSearchDoneLocal);
+    if (localCards) {
+      setCards(localCards);
+    }
+    if (token) {
+      mainApi.getUserInfo(token)
+        .then((data) => {
+          handleLogin();
+          setCurretUser(data);
+        })
+        .catch((err) => console.log(err));
+      mainApi.getSavedCard(token)
+        .then((data) => {
+          setSavedCards(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [currentUser._id, isLogin])
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/saved-news">
-          <section className="app">
-            <NavPopup isOpen={isNavOpen} name={name} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-            <SaveNews handleLogout={handleLogout} name={name} isLogin={isLogin} handleNavOpen={handleNavOpen} />
-          </section>
-        </Route>
-        <Route path="/">
-          <section className="app">
-            <NavPopup isOpen={isNavOpen} isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
-            <SigninPopup isSigninOpen={isSigninOpen} email={email} password={password} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} handleLogin={handleLogin} handleEmail={handleEmail} handlePwd={handlePwd} />
-            <SignupPopup isSignupOpen={isSignupOpen} email={email} password={password} name={name} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} handleConfirmOpen={handleConfirmOpen} handleEmail={handleEmail} handlePwd={handlePwd} handleName={handleName} />
-            <ConfirmPopup isConfirmOpen={isConfirmOpen} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
-            <Main isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} isSigninOpen={isSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
-          </section>
-        </Route>
-      </Switch>
-    </BrowserRouter>
-
+    <CurrenUserContext.Provider value={currentUser}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/saved-news">
+            <section className="app">
+              <ProtectedRoute Component={NavPopup} isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
+              <ProtectedRoute Component={SaveNews} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} isLogin={isLogin} savedCards={savedCards} handleNavOpen={handleNavOpen} handleDeleteCard={handleDeleteCard} />
+            </section>
+          </Route>
+          <Route exact path="/">
+            <section className="app">
+              <NavPopup isOpen={isNavOpen} isLogin={isLogin} handleSigninOpen={handleSigninOpen} handlePopupClose={handleNavClose} handleLogout={handleLogout} />
+              <SigninPopup disable={disable} isSigninOpen={isSigninOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleLoginSubmit={handleLoginSubmit} handlePopupClose={handleSigninClose} handleSignupOpen={handleSignupOpen} />
+              <SignupPopup disable={disable} isSignupOpen={isSignupOpen} errMsg={errMsg} handleErrMsg={handleErrMsg} handleSignupSubmit={handleSignupSubmit} handlePopupClose={handleSignupClose} handleSigninOpen={handleSigninOpen} />
+              <ConfirmPopup isConfirmOpen={isConfirmOpen} handleErrMsg={handleErrMsg} handlePopupClose={handleConfirmClose} handleSigninOpen={handleSigninOpen} />
+              <Main disable={disable} isLogin={isLogin} topic={topic} isServerErr={isServerErr} isSearchDone={isSearchDone} isFound={isFound} isLoading={isLoading} cards={cards} savedCards={savedCards} isMore={isMore} isSigninOpen={isSigninOpen}
+                handleApiUnSaveCard={handleApiUnSaveCard} handleApiSaveCard={handleApiSaveCard} handleHindMore={handleHindMore} handleSaveCards={handleSaveCards} handleShowMore={handleShowMore} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
+            </section>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </CurrenUserContext.Provider>
   );
 }
 

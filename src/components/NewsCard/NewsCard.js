@@ -1,34 +1,77 @@
 import { useState } from 'react';
-import newsImg from '../../images/image_08.png';
 import './NewsCard.css';
 
-export default function NewsCard({ isLogin, isSavedPage }) {
+export default function NewsCard({ isLogin, isSavedPage, card, handleDeleteCard, handleApiSaveCard, handleApiUnSaveCard }) {
     const [isSave, setIsSave] = useState(false);
-    function onClickSaveIcon() {
+    const [cardId, setCardId] = useState('');
+    function formatDate() {
+        const monthIndex = card.publishedAt.slice(5, 7);
+        const month = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"][monthIndex - 1];
+        const day = card.publishedAt.slice(8, 10);
+        const year = card.publishedAt.slice(0, 4);
+        return month + " " + day + "," + year;
+    }
+    const date = isSavedPage ? card.date : formatDate(card.publishedAt);
+    const keyword = isSavedPage ? card.keyword : "";
+    const text = isSavedPage ? card.text : card.description;
+    const source = isSavedPage ? card.source : card.source.name;
+    const image = isSavedPage ? card.image : card.urlToImage;
+    function handleSaveState(state) {
+        setIsSave(state);
+    }
+    function handleCardId(id) {
+        setCardId(id);
+    }
+
+    function onClickSave() {
+        const token = localStorage.getItem('token');
+        const topic = localStorage.getItem('topic');
         if (!isSave) {
-            setIsSave(true);
+            handleApiSaveCard({
+                token,
+                keyword: topic,
+                title: card.title,
+                text: card.description,
+                date: date,
+                source: card.source.name,
+                link: card.url,
+                image: card.urlToImage,
+                handleSaveState,
+                handleCardId,
+            })
+
         } else {
-            setIsSave(false);
+            handleApiUnSaveCard({ articlesId: cardId, handleSaveState })
         }
     }
+
+    function onClickDelete() {
+        handleDeleteCard({ articlesId: card._id });
+    }
     const iconClass = isLogin ?
-        (isSavedPage ? "newscard__icon-trash" :
-            (isSave ? "newscard__icon-blue" : "newscard__icon"))
+        (isSave ? "newscard__icon-blue" : "newscard__icon")
         : "newscard__icon";
     const popupText = isLogin ? "Remove from saved" : "Sign in to save articles";
     const popupClass = isLogin ? (isSavedPage ? "newscard__popup" : "newscard-hidden") : "newscard__popup";
     const keywordClass = isSavedPage ? "newscard__keyword" : "newscard-hidden";
     return (
         <li className="newscard">
-            <div className={iconClass} onClick={onClickSaveIcon}></div>
+            {isSavedPage ?
+                <div className="newscard__icon-trash" onClick={onClickDelete}></div> :
+                isLogin ?
+                    <div className={iconClass} onClick={onClickSave}></div> :
+                    <div className={iconClass}></div>
+
+            }
             <p className={popupClass}>{popupText}</p>
-            <p className={keywordClass}>Nature</p>
-            <img src={newsImg} alt="news" className="newscard__img" />
+            <p className={keywordClass}>{keyword}</p>
+            <img src={image} alt="news" className="newscard__img" />
             <article className="newscard__text-box">
-                <p className="newscard__date">November 4, 2020</p>
-                <h3 className="newscard__title">Everyone Needs a Special 'Sit Spot' in Nature</h3>
-                <p className="newscard__text">Ever since I read Richard Louv's influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...</p>
-                <p className="newscard__sourse">treehugger</p>
+                <p className="newscard__date">{date}</p>
+                <h3 className="newscard__title">{card.title}</h3>
+                <p className="newscard__text">{text}</p>
+                <p className="newscard__sourse">{source}</p>
             </article>
         </li>
     )

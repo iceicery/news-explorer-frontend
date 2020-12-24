@@ -4,14 +4,17 @@ import Header from "../Header/Header";
 import SearchNews from "../SearchNews/SearchNews";
 import Preloader from "../Preloader/Preloader";
 import NotFound from "../NotFound/NotFound";
+import ServerErr from "../ServerErr/ServerErr";
 
-export default function Main({ handleSigninOpen, isLogin, name, handleLogout, handleNavOpen }) {
+export default function Main({ disable, handleApiSaveCard, handleSigninOpen, isLogin, isServerErr, isSearchDone, isFound, isLoading, cards, isMore,
+    handleApiUnSaveCard, handleHindMore, handleShowMore, handleSearch, handleSearchSubmit, handleLogout, handleNavOpen }) {
     return (
         <section className="main">
-            <Header isLogin={isLogin} name={name} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} />
-            <Preloader isLoading={false} />
-            <NotFound isFound={true} />
-            <SearchNews isLogin={isLogin} />
+            <Header disable={disable} isLogin={isLogin} handleSearch={handleSearch} handleSearchSubmit={handleSearchSubmit} handleSigninOpen={handleSigninOpen} handleLogout={handleLogout} handleNavOpen={handleNavOpen} handleHindMore={handleHindMore} />
+            <ServerErr isServerErr={isServerErr} />
+            <Preloader isLoading={isLoading} />
+            <NotFound isFound={isFound} />
+            <SearchNews handleApiUnSaveCard={handleApiUnSaveCard} handleApiSaveCard={handleApiSaveCard} isLogin={isLogin} isSearchDone={isSearchDone} cards={cards} isMore={isMore} handleShowMore={handleShowMore} />
             <About />
             <Footer />
         </section>

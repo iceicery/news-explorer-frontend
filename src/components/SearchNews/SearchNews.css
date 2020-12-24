@@ -2,6 +2,9 @@
   background-color: #f5f6f7;
   border: solid #f5f6f7;
 }
+.searchnews-hidden {
+  display: none;
+}
 .searchnews__title {
   margin-top: 80px;
   margin-bottom: 0;
